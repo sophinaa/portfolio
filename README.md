@@ -3,9 +3,9 @@
 Personal 3D developer portfolio built with React, Vite, and Three.js. It highlights my experience, projects, and a contact form that sends messages straight to my inbox.
 
 ### Stack
-- React 18 + Vite
-- Tailwind CSS + Framer Motion
-- React Three Fiber / Drei for the 3D sections
+- **Languages:** Python, Java, C, C++, JavaScript, TypeScript, Go, C#, SQL
+- **Frameworks:** React, React Native, Node.js, Express.js, Next.js, ASP.NET Core
+- **Tools:** Docker, Git, GitHub, AWS, MongoDB, PostgreSQL, Unix/Linux, Shell Scripting, VS Code
 
 ### Run locally
 ```bash

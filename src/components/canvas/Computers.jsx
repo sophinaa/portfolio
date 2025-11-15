@@ -21,9 +21,9 @@ const Computers = ({ isMobile }) => {
       <pointLight intensity={1} />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
-        rotation={[-0.01, -0.2, -0.1]}
+        scale={isMobile ? 0.7 : 0.8}
+        position={isMobile ? [0, -3, -2.2] : [0, -3.2, -1.6]}
+        rotation={[-0.02, -0.35, -0.05]}
       />
     </mesh>
   );
@@ -31,6 +31,7 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [autoRotate, setAutoRotate] = useState(true);
 
   useEffect(() => {
     // Add a listener for changes to the screen size
@@ -64,8 +65,11 @@ const ComputersCanvas = () => {
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
+          autoRotate={autoRotate}
+          autoRotateSpeed={1.2}
+          maxPolarAngle={Math.PI - 0.2}
+          minPolarAngle={0.2}
+          onStart={() => setAutoRotate(false)}
         />
         <Computers isMobile={isMobile} />
       </Suspense>

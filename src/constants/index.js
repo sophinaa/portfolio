@@ -3,18 +3,6 @@ import {
   backend,
   creator,
   web,
-  javascript,
-  typescript,
-  html,
-  css,
-  reactjs,
-  redux,
-  tailwind,
-  nodejs,
-  mongodb,
-  git,
-  figma,
-  docker,
   meta,
   starbucks,
   tesla,
@@ -22,7 +10,6 @@ import {
   carrent,
   jobit,
   tripguide,
-  threejs,
 } from "../assets";
 
 export const navLinks = [
@@ -53,197 +40,172 @@ export const socialLinks = [
 
 const services = [
   {
-    title: "Web Developer",
+    title: "Backend & API Engineer",
     icon: web,
   },
   {
-    title: "React Native Developer",
+    title: "Mobile & React Native Developer",
     icon: mobile,
   },
   {
-    title: "Backend Developer",
+    title: "Distributed Systems & Cloud",
     icon: backend,
   },
   {
-    title: "Content Creator",
+    title: "Full Stack Developer",
     icon: creator,
   },
 ];
 
 const technologies = [
   {
-    name: "HTML 5",
-    icon: html,
+    category: "Languages",
+    items: [
+      "Python",
+      "Java",
+      "C",
+      "C++",
+      "JavaScript",
+      "TypeScript",
+      "Go",
+      "C#",
+      "SQL",
+    ],
   },
   {
-    name: "CSS 3",
-    icon: css,
+    category: "Frameworks",
+    items: ["React", "React Native", "Node.js", "Express.js", "Next.js", "ASP.NET Core"],
   },
   {
-    name: "JavaScript",
-    icon: javascript,
-  },
-  {
-    name: "TypeScript",
-    icon: typescript,
-  },
-  {
-    name: "React JS",
-    icon: reactjs,
-  },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "Three JS",
-    icon: threejs,
-  },
-  {
-    name: "git",
-    icon: git,
-  },
-  {
-    name: "figma",
-    icon: figma,
-  },
-  {
-    name: "docker",
-    icon: docker,
+    category: "Tools & Platforms",
+    items: [
+      "Docker",
+      "Git",
+      "GitHub",
+      "AWS",
+      "MongoDB",
+      "PostgreSQL",
+      "Unix/Linux",
+      "Shell Scripting",
+      "VS Code",
+    ],
   },
 ];
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
-    iconBg: "#383E56",
-    date: "March 2020 - April 2021",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
-    iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
-    iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Full stack Developer",
-    company_name: "Meta",
+    title: "Welfare Officer",
+    company_name: "Dundee University Computing Society",
     icon: meta,
-    iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
+    iconBg: "#415a77",
+    date: "2025 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Lead community wellbeing initiatives and collaborate with staff to keep 150+ members engaged.",
+      "Organise socials, study circles, and mentoring sessions to support student inclusion.",
+    ],
+  },
+  {
+    title: "Promotion Lead",
+    company_name: "Angus & Dundee District Volleyball",
+    icon: shopify,
+    iconBg: "#415a77",
+    date: "2025 - Present",
+    points: [
+      "Manage social media calendars and match-day content to grow regional outreach.",
+      "Produce website updates and highlight reels that showcase community programmes.",
+    ],
+  },
+  {
+    title: "Research Project Assistant",
+    company_name: "University of St Andrews",
+    icon: tesla,
+    iconBg: "#415a77",
+    date: "2023 - 2023",
+    points: [
+      "Conducted literature searches and produced concise summaries of academic articles and interviews.",
+      "Coded and analysed qualitative research data, organised fieldwork logistics, and transcribed interviews.",
+      "Prepared interview archives and supported report writing, editing, and publication formatting.",
+    ],
+  },
+  {
+    title: "Assistant Sports Coach",
+    company_name: "University of St Andrews",
+    icon: starbucks,
+    iconBg: "#415a77",
+    date: "2022 - 2023",
+    points: [
+      "Supported coaching sessions for student teams with a focus on fundamentals and wellbeing.",
+      "Coordinated equipment, training schedules, and feedback loops with senior coaches.",
+    ],
+  },
+  {
+    title: "Private Tutor",
+    company_name: "Self-Employed",
+    icon: carrent,
+    iconBg: "#415a77",
+    date: "2022 - Present",
+    points: [
+      "Deliver one-on-one maths and science tutoring tailored to each student's learning style.",
+      "Design revision plans, diagnostics, and progress reports that improve academic confidence.",
     ],
   },
 ];
 
-const testimonials = [
+const education = [
   {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
-  },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    program: "BSc (Hons) Computer Science",
+    institution: "University of Dundee",
+    period: "Sep 2023 - Present",
+    details: [
+      "Currently in 3rd year specializing in Data Science and AI.",
+      "Welfare Officer, Dundee University Computing Society, supporting 150+ members.",
+      "Leading coursework in machine learning, distributed systems, and data visualization.",
+      "Winner of the 2025 Dundee University Hackathon; co-organising the 2026 event.",
+    ],
   },
 ];
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Real-Time Analytics Dashboard",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Multi-service analytics platform built with C#, Go, and TypeScript. Includes an ASP.NET Core ingestion API, a Go API gateway with JWT auth and rate limiting, and Docker Compose orchestration for isolated services.",
     tags: [
       {
-        name: "react",
+        name: "csharp",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "go",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "typescript",
         color: "pink-text-gradient",
+      },
+      {
+        name: "docker",
+        color: "blue-text-gradient",
       },
     ],
     image: carrent,
     source_code_link: "https://github.com/",
   },
   {
-    name: "Job IT",
+    name: "HalalWay",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "Cross-platform mobile app built with React Native and a Node.js/TypeScript backend. Features secure authentication, map-based location search, review submission, and a scalable REST API with optimised MongoDB indexing.",
     tags: [
       {
-        name: "react",
+        name: "reactnative",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "nodejs",
         color: "green-text-gradient",
       },
       {
-        name: "scss",
+        name: "mongodb",
         color: "pink-text-gradient",
       },
     ],
@@ -251,20 +213,20 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "Trip Guide",
+    name: "Campus Companion (Hackathon Winner)",
     description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "24-hour hackathon project delivering a Next.js/TypeScript onboarding portal with an LLM-powered Q&A assistant that integrates external APIs for real-time answers.",
     tags: [
       {
         name: "nextjs",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "typescript",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "openai",
         color: "pink-text-gradient",
       },
     ],
@@ -273,4 +235,4 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, technologies, experiences, education, projects };
