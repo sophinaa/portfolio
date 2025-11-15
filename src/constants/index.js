@@ -40,6 +40,17 @@ export const navLinks = [
   },
 ];
 
+export const socialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/sophinaa",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/sophinaa",
+  },
+];
+
 const services = [
   {
     title: "Web Developer",

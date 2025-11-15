@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
+import { socialLinks } from "../constants";
 import { ComputersCanvas } from "./canvas";
 
 const Hero = () => {
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 z-10`}
       >
         <div className='flex flex-col justify-center items-center mt-5'>
           <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
@@ -16,12 +17,25 @@ const Hero = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#915EFF]'>Adrian</span>
+            Hi, I'm <span className='text-[#915EFF]'>Sophina</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop 3D visuals, user <br className='sm:block hidden' />
-            interfaces and web applications
+            Full Stack Developer <br className='sm:block hidden' />
+            AI and Data Enthusiast
           </p>
+          <div className='mt-6 flex flex-wrap gap-3'>
+            {socialLinks.map(({ name, url }) => (
+              <a
+                key={name}
+                href={url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center text-sm font-semibold tracking-wide text-white bg-black/40 border border-white/30 px-4 py-2 rounded-full backdrop-blur hover:bg-black/60 transition-colors duration-200'
+              >
+                {name}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

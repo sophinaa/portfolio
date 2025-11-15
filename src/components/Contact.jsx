@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
@@ -31,37 +30,62 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "JavaScript Mastery",
-          from_email: form.email,
-          to_email: "sujata@jsmastery.pro",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
+    fetch("https://formsubmit.co/ajax/sophina0212@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        message: form.message,
+        _subject: "New portfolio contact",
+      }),
+    })
+      .then(async (res) => {
+        const contentType = res.headers.get("content-type");
+        const isJson = contentType && contentType.includes("application/json");
+        const data = isJson ? await res.json() : await res.text();
 
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          alert("Ahh, something went wrong. Please try again.");
+        if (!res.ok) {
+          const message =
+            typeof data === "string"
+              ? data
+              : data?.message || "Failed to send message";
+          const plainMessage =
+            typeof message === "string"
+              ? message.replace(/<[^>]+>/g, "").trim()
+              : message;
+          throw new Error(
+            plainMessage || "Failed to send message. Please try again."
+          );
         }
-      );
+
+        return data;
+      })
+      .then((data) => {
+        setLoading(false);
+        const successMessage =
+          (data && typeof data === "object" && data.message) ||
+          (typeof data === "string" && data.replace(/<[^>]+>/g, "").trim()) ||
+          "Thank you. I will get back to you as soon as possible.";
+        alert(successMessage);
+
+        setForm({
+          name: "",
+          email: "",
+          message: "",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+        alert(
+          error?.message ||
+            "Ahh, something went wrong. Please try again."
+        );
+      });
   };
 
   return (
