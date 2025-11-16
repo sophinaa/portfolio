@@ -1,11 +1,17 @@
 import React from "react";
-import Tilt from "react-tilt";
+import Tilt from "react-parallax-tilt";
 
 import { SectionWrapper } from "../hoc";
 import { technologies } from "../constants";
 
 const TechCard = ({ category, items, index }) => (
-  <Tilt className='w-full'>
+  <Tilt
+    className='w-full'
+    tiltMaxAngleX={35}
+    tiltMaxAngleY={35}
+    transitionSpeed={400}
+    scale={1}
+  >
     <div
       className='green-pink-gradient p-[1px] rounded-[20px] shadow-card'
       style={{ animationDelay: `${index * 0.1}s` }}
