@@ -23,6 +23,10 @@ const iconRounding = {
   "Dundee University Computing Society": "rounded-full bg-white/10 p-1",
 };
 
+const iconOffsets = {
+  "University of St Andrews": "translate-y-[6%]",
+};
+
 const ExperienceCard = ({ experience }) => {
   return (
     <VerticalTimelineElement
@@ -41,7 +45,7 @@ const ExperienceCard = ({ experience }) => {
               alt={experience.company_name}
               className={`${iconSizing[experience.company_name] || "w-[65%] h-[65%]"} ${
                 iconRounding[experience.company_name] || ""
-              } object-contain`}
+              } ${iconOffsets[experience.company_name] || ""} object-contain`}
             />
           ) : (
             <span className='text-white text-[16px] font-semibold text-center leading-tight'>
