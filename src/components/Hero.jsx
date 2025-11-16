@@ -4,6 +4,8 @@ import { styles } from "../styles";
 import { socialLinks } from "../constants";
 import { ComputersCanvas } from "./canvas";
 
+const resumeLink = `${import.meta.env.BASE_URL}SophinaAkram.pdf`;
+
 const Hero = () => {
   return (
     <section className={`relative w-full h-screen mx-auto`}>
@@ -36,7 +38,7 @@ const Hero = () => {
               </a>
             ))}
             <a
-              href='/SophinaAkram.pdf'
+              href={resumeLink}
               target='_blank'
               rel='noopener noreferrer'
               className='inline-flex items-center text-sm font-semibold tracking-wide text-white bg-[#415a77] px-4 py-2 rounded-full hover:bg-[#1b263b] transition-colors duration-200'
