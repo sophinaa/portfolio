@@ -6,7 +6,8 @@ import {
   meta,
   starbucks,
   tesla,
-  shopify,
+  addva,
+  standrews,
   carrent,
   jobit,
   tripguide,
@@ -107,7 +108,7 @@ const experiences = [
   {
     title: "Promotion Lead",
     company_name: "Angus & Dundee District Volleyball",
-    icon: shopify,
+    icon: addva,
     iconBg: "#415a77",
     date: "2025 - Present",
     points: [
@@ -118,7 +119,7 @@ const experiences = [
   {
     title: "Research Project Assistant",
     company_name: "University of St Andrews",
-    icon: tesla,
+    icon: standrews,
     iconBg: "#415a77",
     date: "2023 - 2023",
     points: [
@@ -130,7 +131,7 @@ const experiences = [
   {
     title: "Assistant Sports Coach",
     company_name: "University of St Andrews",
-    icon: starbucks,
+    icon: standrews,
     iconBg: "#415a77",
     date: "2022 - 2023",
     points: [
@@ -141,7 +142,7 @@ const experiences = [
   {
     title: "Private Tutor",
     company_name: "Self-Employed",
-    icon: carrent,
+    icon: null,
     iconBg: "#415a77",
     date: "2022 - Present",
     points: [
@@ -188,7 +189,7 @@ const projects = [
         color: "blue-text-gradient",
       },
     ],
-    image: carrent,
+    // image: carrent,
     source_code_link: "https://github.com/",
   },
   {
@@ -209,8 +210,8 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: jobit,
-    source_code_link: "https://github.com/",
+    // image: jobit,
+    source_code_link: "https://github.com/sophinaa/HalalWay",
   },
   {
     name: "Campus Companion (Hackathon Winner)",
@@ -230,7 +231,7 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: tripguide,
+    // image: tripguide,
     source_code_link: "https://github.com/",
   },
 ];

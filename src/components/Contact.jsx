@@ -30,12 +30,18 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    fetch("https://formsubmit.co/ajax/sophina0212@gmail.com", {
+    const endpoint = `https://formsubmit.co/ajax/${encodeURIComponent(
+      "sophina0212@gmail.com"
+    )}`;
+
+    fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
+      referrerPolicy: "no-referrer",
+      mode: "cors",
       body: JSON.stringify({
         name: form.name,
         email: form.email,
@@ -111,7 +117,7 @@ const Contact = () => {
               name='name'
               value={form.name}
               onChange={handleChange}
-              placeholder="What's your good name?"
+              placeholder="What's your name?"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>

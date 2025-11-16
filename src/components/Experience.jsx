@@ -12,6 +12,17 @@ import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
+const iconSizing = {
+  "Dundee University Computing Society": "w-[95%] h-[95%]",
+  "University of St Andrews": "w-[92%] h-[92%]",
+  "Angus & Dundee District Volleyball": "w-[90%] h-[90%]",
+};
+
+const iconRounding = {
+  "Angus & Dundee District Volleyball": "rounded-3xl bg-white/10 p-1",
+  "Dundee University Computing Society": "rounded-full bg-white/10 p-1",
+};
+
 const ExperienceCard = ({ experience }) => {
   return (
     <VerticalTimelineElement
@@ -23,12 +34,25 @@ const ExperienceCard = ({ experience }) => {
       date={experience.date}
       iconStyle={{ background: experience.iconBg }}
       icon={
-        <div className='flex justify-center items-center w-full h-full'>
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className='w-[60%] h-[60%] object-contain'
-          />
+        <div className='flex justify-center items-center w-full h-full p-1'>
+          {experience.icon ? (
+            <img
+              src={experience.icon}
+              alt={experience.company_name}
+              className={`${iconSizing[experience.company_name] || "w-[65%] h-[65%]"} ${
+                iconRounding[experience.company_name] || ""
+              } object-contain`}
+            />
+          ) : (
+            <span className='text-white text-[16px] font-semibold text-center leading-tight'>
+              {experience.company_name
+                .split(" ")
+                .map((word) => word[0])
+                .join("")
+                .slice(0, 3)
+                .toUpperCase()}
+            </span>
+          )}
         </div>
       }
     >
