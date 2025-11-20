@@ -214,25 +214,25 @@ const projects = [
     source_code_link: "https://github.com/sophinaa/HalalWay",
   },
   {
-    name: "Campus Companion (Hackathon Winner)",
+    name: "Telemetry & Race Pace Simulator Dashboard (2025–Present)",
     description:
-      "24-hour hackathon project delivering a Next.js/TypeScript onboarding portal with an LLM-powered Q&A assistant that integrates external APIs for real-time answers.",
+      "C#/.NET 8 desktop tool that ingests realistic F1 telemetry (speed, throttle, brake, gear, delta) from CSV/JSON, renders interactive charts and lap overlays, models lap-time effects from fuel load, tyre degradation, aero trim, and ERS deployment, and provides clear UI panels for stint comparison, sector analysis, and parameter tuning with layered ingestion, simulation, and visualization components backed by tested calculations.",
     tags: [
       {
-        name: "nextjs",
+        name: "csharp",
         color: "blue-text-gradient",
       },
       {
-        name: "typescript",
+        name: "dotnet",
         color: "green-text-gradient",
       },
       {
-        name: "openai",
+        name: "data-viz",
         color: "pink-text-gradient",
       },
     ],
     // image: tripguide,
-    source_code_link: "https://github.com/aspekts/quackathon",
+    source_code_link: "https://github.com/sophinaa/AlpineTelemetryDashboard",
   },
 ];
 
