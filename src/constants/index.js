@@ -224,7 +224,7 @@ const projects = [
   {
     name: "Telemetry & Race Pace Simulator Dashboard",
     description:
-      "Desktop telemetry and race pace simulator built with C#/.NET 8. Loads realistic F1 telemetry (speed, throttle, brake, gear, delta) from CSV/JSON, renders interactive charts and lap overlays, models lap-time effects from fuel load, tyre degradation, aero trim, and ERS deployment, and includes UI panels for stint comparison, sector analysis, and parameter tuning with layered ingestion, simulation, and visualization components backed by tested calculations.",
+      "Desktop telemetry and race pace simulator built with C#/.NET 8, featuring realistic F1 data ingestion, interactive charts, lap overlays, and tunable race strategy analysis.",
     tags: [
       {
         name: "csharp",

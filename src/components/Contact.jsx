@@ -73,7 +73,7 @@ const Contact = () => {
                       href={link}
                       target={link.startsWith("http") ? "_blank" : undefined}
                       rel='noopener noreferrer'
-                      className='text-secondary hover:text-white sm:text-left sm:whitespace-nowrap'
+                      className='text-white hover:text-[#0d1b2a] sm:text-left sm:whitespace-nowrap transition-colors duration-200'
                     >
                       {value}
                     </a>
