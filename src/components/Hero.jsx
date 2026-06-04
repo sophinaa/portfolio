@@ -14,6 +14,20 @@ const longestHeroTitle = heroTitles.reduce((longest, current) =>
 );
 
 const Hero = () => {
+  const scrollToAbout = (event) => {
+    event.preventDefault();
+
+    const target = document.getElementById("about");
+    if (!target) {
+      return;
+    }
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       <div
@@ -87,9 +101,10 @@ const Hero = () => {
           <a
             href='#about'
             aria-label='Scroll to About section'
-            className='inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/10 text-2xl text-white backdrop-blur hover:bg-white/20 transition-colors duration-200'
+            onClick={scrollToAbout}
+            className='hero-scroll-arrow inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur hover:bg-white/20 transition-all duration-300 hover:scale-105'
           >
-            ↓
+            <span className='text-[28px] leading-none'>↓</span>
           </a>
         </BorderGlow>
       </div>

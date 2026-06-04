@@ -42,18 +42,19 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 mx-auto text-left text-secondary text-[17px] max-w-5xl leading-[30px]'
       >
-        Third-year Computer Science student with a growing passion for software
-        development and building practical technology that creates real-world
-        impact. I enjoy learning by doing, whether that's tackling coding
-        challenges, developing projects, or deepening my knowledge of Java,
-        SQL, data structures, algorithms, and full-stack development. I'm
-        especially drawn to creating efficient, user-focused applications and
-        building the technical confidence to contribute meaningfully to
+        Third-year Computer Science student with a growing passion for
+        software development and building practical technology that creates
+        real-world impact. I enjoy learning by doing, whether that's tackling
+        coding challenges, developing projects, or deepening my knowledge of
+        Java, SQL, data structures, algorithms, and full-stack development.
+        I'm especially drawn to creating efficient, user-focused applications
+        and building the technical confidence to contribute meaningfully to
         professional teams. Beyond the technical side, I'm driven by personal
-        growth, discipline, and using technology creatively to solve problems.
-        Right now I'm focused on strengthening my programming foundations,
-        expanding my project portfolio, and landing an internship where I can
-        learn from experienced developers and make a real contribution.
+        growth, discipline, and using technology creatively to solve
+        problems. Right now I'm focused on strengthening my programming
+        foundations, expanding my project portfolio, and landing an
+        internship where I can learn from experienced developers and make a
+        real contribution.
       </motion.p>
 
       <div className='mt-8 flex flex-wrap gap-10'>

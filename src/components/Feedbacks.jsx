@@ -32,9 +32,9 @@ const EducationCard = ({ index, program, institution, period, details }) => (
 
 const Feedbacks = () => {
   return (
-    <div className='mt-12 bg-black-100 rounded-[20px] border border-white/10'>
+    <div className='mt-6 bg-black-100 rounded-[20px] border border-white/10'>
       <div
-        className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[220px]`}
+        className='bg-tertiary rounded-2xl px-8 py-8 sm:px-12 sm:py-10 min-h-[150px]'
       >
         <motion.div variants={textVariant()}>
           <p className={styles.sectionSubText}>Academic journey</p>
@@ -50,4 +50,4 @@ const Feedbacks = () => {
   );
 };
 
-export default SectionWrapper(Feedbacks, "");
+export default SectionWrapper(Feedbacks, "education");

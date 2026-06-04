@@ -7,7 +7,6 @@ import { menu, close } from "../assets";
 import PillNav from "./PillNav";
 
 const Navbar = () => {
-  const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeHref, setActiveHref] = useState("#about");
@@ -27,6 +26,43 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const sectionIds = navLinks.map((nav) => nav.id);
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (!sections.length) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (!visibleEntries.length) {
+          return;
+        }
+
+        const nextId = visibleEntries[0].target.id;
+        setActiveHref(`#${nextId}`);
+      },
+      {
+        rootMargin: "-20% 0px -55% 0px",
+        threshold: [0.2, 0.35, 0.5, 0.65],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <nav
       className={`${
@@ -40,7 +76,7 @@ const Navbar = () => {
           to='/'
           className='flex items-center'
           onClick={() => {
-            setActive("");
+            setActiveHref("#about");
             window.scrollTo(0, 0);
           }}
         >
@@ -63,7 +99,6 @@ const Navbar = () => {
           initialLoadAnimation={false}
           onItemClick={(href) => {
             setActiveHref(href);
-            setActive(navLinks.find((nav) => `#${nav.id}` === href)?.title || "");
           }}
         />
 
@@ -85,11 +120,11 @@ const Navbar = () => {
                 <li
                   key={nav.id}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-secondary"
+                    activeHref === `#${nav.id}` ? "text-white" : "text-secondary"
                   }`}
                   onClick={() => {
                     setToggle(!toggle);
-                    setActive(nav.title);
+                    setActiveHref(`#${nav.id}`);
                   }}
                 >
                   <a href={`#${nav.id}`}>{nav.title}</a>

@@ -275,6 +275,10 @@
   flex-direction: column;
 }
 
+.hero-scroll-arrow {
+  animation: hero-scroll-float 2.2s ease-in-out infinite;
+}
+
 @keyframes text-type-cursor-blink {
   0%,
   49% {
@@ -298,6 +302,17 @@
 
   100% {
     transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes hero-scroll-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
   }
 }
 
