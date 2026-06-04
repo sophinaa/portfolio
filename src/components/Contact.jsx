@@ -12,11 +12,6 @@ const contactDetails = [
     link: "mailto:sophina0212@gmail.com",
   },
   {
-    label: "Phone",
-    value: "+44 7403 018047",
-    link: "tel:+447403018047",
-  },
-  {
     label: "LinkedIn",
     value: "linkedin.com/in/sophinaa",
     link: "https://www.linkedin.com/in/sophinaa",
@@ -35,7 +30,7 @@ const Contact = () => {
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-8 rounded-2xl border border-white/10'
+        className='w-full xl:flex-[1.35] xl:max-w-[980px] bg-black-100 px-12 py-10 rounded-2xl border border-white/10'
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
@@ -45,7 +40,7 @@ const Contact = () => {
           {contactDetails.map(({ label, value, link }) => (
             <div
               key={label}
-              className='flex flex-col sm:flex-row sm:items-center sm:justify-between bg-black-200/50 border border-white/10 rounded-xl px-4 py-3'
+              className='flex w-full flex-col gap-2 sm:grid sm:grid-cols-[140px_max-content] sm:justify-between sm:items-center bg-black-200/50 border border-white/10 rounded-xl px-10 py-5'
             >
               <span className='text-white font-semibold tracking-wide'>
                 {label}
@@ -54,7 +49,7 @@ const Contact = () => {
                 href={link}
                 target={link.startsWith("http") ? "_blank" : undefined}
                 rel='noopener noreferrer'
-                className='text-secondary hover:text-white break-all'
+                className='text-secondary hover:text-white sm:text-left sm:whitespace-nowrap'
               >
                 {value}
               </a>
@@ -65,7 +60,7 @@ const Contact = () => {
 
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        className='xl:flex-[0.5] xl:h-auto md:h-[550px] h-[350px]'
       >
         <EarthCanvas />
       </motion.div>
