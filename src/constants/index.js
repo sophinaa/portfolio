@@ -158,7 +158,7 @@ const education = [
     institution: "University of Dundee",
     period: "Sep 2023 - Present",
     details: [
-      "Currently in final year specializing in Data Science and AI.",
+      "Currently in my final year specializing in Data Science and AI.",
       "Welfare Officer, Dundee University Computing Society, supporting 150+ members.",
       "Leading coursework in machine learning, distributed systems, and data visualization.",
       "Winner of the 2025 Dundee University Hackathon; co-organising the 2026 event.",

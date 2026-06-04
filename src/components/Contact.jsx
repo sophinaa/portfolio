@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
+import BorderGlow from "./BorderGlow";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
@@ -30,32 +31,58 @@ const Contact = () => {
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='w-full xl:flex-[1] xl:max-w-[780px] bg-black-100 px-12 py-10 rounded-2xl border border-white/10'
+        className='w-full xl:flex-[1] xl:max-w-[780px]'
       >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <BorderGlow
+          className='rounded-2xl'
+          edgeSensitivity={34}
+          glowColor='119 141 169'
+          backgroundColor='#415a77'
+          borderRadius={24}
+          glowRadius={38}
+          glowIntensity={0.8}
+          coneSpread={25}
+          animated={false}
+          colors={["#778da9", "#e0e1dd", "#415a77"]}
+        >
+          <div className='bg-black-100 px-12 py-10 rounded-2xl border border-white/10'>
+            <p className={styles.sectionSubText}>Get in touch</p>
+            <h3 className={styles.sectionHeadText}>Contact.</h3>
 
-        <div className='mt-10 space-y-6'>
-          <div className='h-6' />
-          {contactDetails.map(({ label, value, link }) => (
-            <div
-              key={label}
-              className='flex w-full flex-col gap-2 sm:grid sm:grid-cols-[140px_max-content] sm:justify-between sm:items-center bg-black-200/50 border border-white/10 rounded-xl px-10 py-5'
-            >
-              <span className='text-white font-semibold tracking-wide'>
-                {label}
-              </span>
-              <a
-                href={link}
-                target={link.startsWith("http") ? "_blank" : undefined}
-                rel='noopener noreferrer'
-                className='text-secondary hover:text-white sm:text-left sm:whitespace-nowrap'
-              >
-                {value}
-              </a>
+            <div className='mt-10 space-y-6'>
+              <div className='h-6' />
+              {contactDetails.map(({ label, value, link }) => (
+                <BorderGlow
+                  key={label}
+                  className='rounded-xl'
+                  edgeSensitivity={24}
+                  glowColor='119 141 169'
+                  backgroundColor='#1b263b'
+                  borderRadius={18}
+                  glowRadius={26}
+                  glowIntensity={0.85}
+                  coneSpread={20}
+                  animated={false}
+                  colors={["#415a77", "#778da9", "#e0e1dd"]}
+                >
+                  <div className='flex w-full flex-col gap-2 sm:grid sm:grid-cols-[140px_max-content] sm:justify-between sm:items-center bg-black-200/50 border border-white/10 rounded-xl px-10 py-5'>
+                    <span className='text-white font-semibold tracking-wide'>
+                      {label}
+                    </span>
+                    <a
+                      href={link}
+                      target={link.startsWith("http") ? "_blank" : undefined}
+                      rel='noopener noreferrer'
+                      className='text-secondary hover:text-white sm:text-left sm:whitespace-nowrap'
+                    >
+                      {value}
+                    </a>
+                  </div>
+                </BorderGlow>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </BorderGlow>
       </motion.div>
 
       <motion.div

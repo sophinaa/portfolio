@@ -125,6 +125,74 @@
   transform: translateZ(0);
 }
 
+.text-type {
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.text-type__cursor {
+  animation-name: text-type-cursor-blink;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1);
+}
+
+.border-glow {
+  position: relative;
+  border-radius: var(--border-glow-radius);
+  background: var(--border-glow-bg);
+  isolation: isolate;
+}
+
+.border-glow__fx {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+  filter: blur(18px) saturate(120%);
+}
+
+.border-glow__fx--active {
+  opacity: var(--border-glow-opacity);
+}
+
+.border-glow__fx--animated {
+  animation: border-glow-drift 4s linear infinite;
+}
+
+.border-glow__content {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+@keyframes text-type-cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes border-glow-drift {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.02);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
 @keyframes mulShdSpin {
   0%,
   100% {

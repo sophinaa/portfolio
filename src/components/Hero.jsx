@@ -2,7 +2,15 @@ import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { socialLinks } from "../constants";
+import BorderGlow from "./BorderGlow";
 import { ComputersCanvas } from "./canvas";
+import TextType from "./TextType";
+
+const heroTitles = [
+  "Full Stack Developer",
+  "AI and Data Enthusiast",
+  "Backend Engineer",
+];
 
 const Hero = () => {
   return (
@@ -20,20 +28,43 @@ const Hero = () => {
             Hi, I'm <span className='text-[#778da9]'>Sophina</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            Full Stack Developer <br className='sm:block hidden' />
-            AI and Data Enthusiast
+            <TextType
+              as='span'
+              className='inline-flex min-h-[80px] items-start'
+              text={heroTitles}
+              typingSpeed={75}
+              pauseDuration={1500}
+              deletingSpeed={50}
+              showCursor
+              cursorCharacter='_'
+              cursorClassName='ml-1 text-[#778da9]'
+              cursorBlinkDuration={0.5}
+            />
           </p>
-          <div className='mt-6 flex flex-wrap gap-3 pointer-events-auto'>
+          <div className='mt-2 flex flex-wrap gap-3 pointer-events-auto'>
             {socialLinks.map(({ name, url }) => (
-              <a
+              <BorderGlow
                 key={name}
-                href={url}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='inline-flex items-center text-sm font-semibold tracking-wide text-white bg-black/30 border border-white/30 px-4 py-2 rounded-full backdrop-blur hover:bg-black/50 transition-colors duration-200'
+                className='rounded-full'
+                edgeSensitivity={24}
+                glowColor='119 141 169'
+                backgroundColor='transparent'
+                borderRadius={999}
+                glowRadius={28}
+                glowIntensity={0.9}
+                coneSpread={20}
+                animated={false}
+                colors={["#778da9", "#e0e1dd", "#415a77"]}
               >
-                {name}
-              </a>
+                <a
+                  href={url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex items-center text-base font-semibold tracking-wide text-white bg-black/30 border border-white/30 px-6 py-3 rounded-full backdrop-blur hover:bg-black/50 transition-colors duration-200'
+                >
+                  {name}
+                </a>
+              </BorderGlow>
             ))}
           </div>
         </div>
