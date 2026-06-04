@@ -44,7 +44,7 @@ const Navbar = () => {
         >
           <p className='text-white text-[18px] font-bold cursor-pointer flex '>
             Sophina &nbsp;
-            <span className='sm:block hidden'> | 3rd Year BSc (Hons) Computer Science </span>
+            <span className='sm:block hidden'> | Final Year BSc (Hons) Computer Science </span>
           </p>
         </Link>
 
