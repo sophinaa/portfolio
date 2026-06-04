@@ -1,37 +1,33 @@
 import React from "react";
-import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
+import PixelCard from "./PixelCard";
 import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 
 const ServiceCard = ({ index, title, icon }) => (
-  <Tilt
-    className='xs:w-[250px] w-full'
-    tiltMaxAngleX={45}
-    tiltMaxAngleY={45}
-    transitionSpeed={450}
-    scale={1}
-  >
+  <div className='xs:w-[250px] w-full'>
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className='w-full rounded-[20px]'
+      className='w-full'
     >
-      <div className='glass-panel rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'>
-        <img
-          src={icon}
-          alt={`${title}-icon`}
-          className='w-16 h-16 object-contain'
-        />
+      <PixelCard variant='pink' className='about-pixel-card'>
+        <div className='about-pixel-card__inner'>
+          <img
+            src={icon}
+            alt={`${title}-icon`}
+            className='w-16 h-16 object-contain'
+          />
 
-        <h3 className='text-white text-[20px] font-bold text-center'>
-          {title}
-        </h3>
-      </div>
+          <h3 className='text-white text-[20px] font-bold text-center'>
+            {title}
+          </h3>
+        </div>
+      </PixelCard>
     </motion.div>
-  </Tilt>
+  </div>
 );
 
 const About = () => {
@@ -39,17 +35,25 @@ const About = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
+        <h2 className={styles.sectionHeadText}>About me.</h2>
       </motion.div>
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        Penultimate-year Computer Science student specialising in backend and distributed systems. Experienced with C#, Go,
-        Node.js/TypeScript, React Native, Docker, and AWS. Strong focus on authentication, API design, cloud deployment,
-        and scalable architecture. Currently deepening expertise in database systems, object-oriented design, and distributed
-        computing.
+        Third-year Computer Science student with a growing passion for software
+        development and building practical technology that creates real-world
+        impact. I enjoy learning by doing, whether that's tackling coding
+        challenges, developing projects, or deepening my knowledge of Java,
+        SQL, data structures, algorithms, and full-stack development. I'm
+        especially drawn to creating efficient, user-focused applications and
+        building the technical confidence to contribute meaningfully to
+        professional teams. Beyond the technical side, I'm driven by personal
+        growth, discipline, and using technology creatively to solve problems.
+        Right now I'm focused on strengthening my programming foundations,
+        expanding my project portfolio, and landing an internship where I can
+        learn from experienced developers and make a real contribution.
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>

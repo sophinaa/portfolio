@@ -8,7 +8,7 @@ const App = () => {
     <BrowserRouter>
       <div className='app-surface relative z-0 bg-primary'>
         <LetterGlitch
-          className='fixed inset-0 z-0'
+          className='absolute inset-0 z-0 h-full'
           glitchSpeed={50}
           centerVignette
           outerVignette={false}

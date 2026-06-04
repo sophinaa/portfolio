@@ -47,9 +47,15 @@ const LetterGlitch = ({
     let animationFrame = 0;
     let lastTimestamp = 0;
     let glitchAccumulator = 0;
+    let resizeObserver;
 
     const resizeCanvas = () => {
       const { clientWidth, clientHeight } = canvas;
+
+      if (!clientWidth || !clientHeight) {
+        return;
+      }
+
       const ratio = window.devicePixelRatio || 1;
 
       canvas.width = clientWidth * ratio;
@@ -154,10 +160,19 @@ const LetterGlitch = ({
 
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
+    resizeObserver = new ResizeObserver(() => {
+      resizeCanvas();
+    });
+
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement);
+    }
+
     animationFrame = window.requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      resizeObserver?.disconnect();
       window.cancelAnimationFrame(animationFrame);
     };
   }, [

@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { menu, close } from "../assets";
+import PillNav from "./PillNav";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeHref, setActiveHref] = useState("#about");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,19 +49,23 @@ const Navbar = () => {
           </p>
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`${
-                active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
-              onClick={() => setActive(nav.title)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
-          ))}
-        </ul>
+        <PillNav
+          items={navLinks.map((nav) => ({
+            label: nav.title,
+            href: `#${nav.id}`,
+          }))}
+          activeHref={activeHref}
+          baseColor='rgba(13, 27, 42, 0.2)'
+          pillColor='#ffffff'
+          hoveredPillTextColor='#daf4f5'
+          pillTextColor='#0d1b2a'
+          theme='light'
+          initialLoadAnimation={false}
+          onItemClick={(href) => {
+            setActiveHref(href);
+            setActive(navLinks.find((nav) => `#${nav.id}` === href)?.title || "");
+          }}
+        />
 
         <div className='sm:hidden flex flex-1 justify-end items-center'>
           <img
