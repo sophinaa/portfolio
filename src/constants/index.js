@@ -98,7 +98,7 @@ const experiences = [
     title: "Welfare Officer",
     company_name: "Dundee University Computing Society",
     icon: meta,
-    iconBg: "#415a77",
+    iconBg: "#c4dce0",
     date: "2025 - Present",
     points: [
       "Lead community wellbeing initiatives and collaborate with staff to keep 150+ members engaged.",
@@ -109,7 +109,7 @@ const experiences = [
     title: "Promotion Lead",
     company_name: "Angus & Dundee District Volleyball",
     icon: addva,
-    iconBg: "#415a77",
+    iconBg: "#c4dce0",
     date: "2025 - Present",
     points: [
       "Manage social media calendars and match-day content to grow regional outreach.",
@@ -120,7 +120,7 @@ const experiences = [
     title: "Research Project Assistant",
     company_name: "University of St Andrews",
     icon: standrews,
-    iconBg: "#415a77",
+    iconBg: "#c4dce0",
     date: "2023 - 2023",
     points: [
       "Conducted literature searches and produced concise summaries of academic articles and interviews.",
@@ -132,7 +132,7 @@ const experiences = [
     title: "Assistant Sports Coach",
     company_name: "University of St Andrews",
     icon: standrews,
-    iconBg: "#415a77",
+    iconBg: "#c4dce0",
     date: "2022 - 2023",
     points: [
       "Supported coaching sessions for student teams with a focus on fundamentals and wellbeing.",
@@ -143,7 +143,7 @@ const experiences = [
     title: "Private Tutor",
     company_name: "Self-Employed",
     icon: null,
-    iconBg: "#415a77",
+    iconBg: "#c4dce0",
     date: "2022 - Present",
     points: [
       "Deliver one-on-one maths and science tutoring tailored to each student's learning style.",

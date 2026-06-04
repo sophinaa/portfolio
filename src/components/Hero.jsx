@@ -1,9 +1,6 @@
-import { motion } from "framer-motion";
-
 import { styles } from "../styles";
 import { socialLinks } from "../constants";
 import BorderGlow from "./BorderGlow";
-import { ComputersCanvas } from "./canvas";
 import TextType from "./TextType";
 
 const heroTitles = [
@@ -12,49 +9,53 @@ const heroTitles = [
   "Backend Engineer",
 ];
 
+const longestHeroTitle = heroTitles.reduce((longest, current) =>
+  current.length > longest.length ? current : longest
+);
+
 const Hero = () => {
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 z-10 pointer-events-none`}
+        className={`absolute inset-0 max-w-7xl mx-auto ${styles.paddingX} flex items-center justify-center z-10 pointer-events-none`}
       >
-        <div className='flex flex-col justify-center items-center mt-5'>
-          <div className='w-5 h-5 rounded-full bg-[#778da9]' />
-          <div className='w-1 sm:h-80 h-40 violet-gradient' />
-        </div>
-
-        <div>
+        <div className='text-center'>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#778da9]'>Sophina</span>
+            Hi, I'm <span className='text-[#daf4f5]'>Sophina</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            <TextType
-              as='span'
-              className='inline-flex min-h-[80px] items-start'
-              text={heroTitles}
-              typingSpeed={75}
-              pauseDuration={1500}
-              deletingSpeed={50}
-              showCursor
-              cursorCharacter='_'
-              cursorClassName='ml-1 text-[#778da9]'
-              cursorBlinkDuration={0.5}
-            />
+            <span className='relative inline-flex min-h-[80px] items-start justify-center'>
+              <span className='invisible whitespace-nowrap'>
+                {longestHeroTitle}_
+              </span>
+              <TextType
+                as='span'
+                className='absolute inset-0 inline-flex items-start justify-center whitespace-nowrap'
+                text={heroTitles}
+                typingSpeed={75}
+                pauseDuration={1500}
+                deletingSpeed={50}
+                showCursor
+                cursorCharacter='_'
+                cursorClassName='ml-1 text-[#daf4f5]'
+                cursorBlinkDuration={0.5}
+              />
+            </span>
           </p>
-          <div className='mt-2 flex flex-wrap gap-3 pointer-events-auto'>
+          <div className='mt-2 flex flex-wrap justify-center gap-3 pointer-events-auto'>
             {socialLinks.map(({ name, url }) => (
               <BorderGlow
                 key={name}
                 className='rounded-full'
                 edgeSensitivity={24}
-                glowColor='119 141 169'
+                glowColor='171 206 207'
                 backgroundColor='transparent'
                 borderRadius={999}
                 glowRadius={28}
                 glowIntensity={0.9}
                 coneSpread={20}
                 animated={false}
-                colors={["#778da9", "#e0e1dd", "#415a77"]}
+                colors={["#c4dce0", "#daf4f5", "#abcecf"]}
               >
                 <a
                   href={url}
@@ -68,26 +69,6 @@ const Hero = () => {
             ))}
           </div>
         </div>
-      </div>
-
-      <ComputersCanvas />
-
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
-        <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className='w-3 h-3 rounded-full bg-secondary mb-1'
-            />
-          </div>
-        </a>
       </div>
     </section>
   );

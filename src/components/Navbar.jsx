@@ -30,21 +30,20 @@ const Navbar = () => {
       className={`${
         styles.paddingX
       } w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
+        scrolled ? "bg-[#0d1b2a]" : "bg-[#0d1b2a]/90 backdrop-blur-sm"
       }`}
     >
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to='/'
-          className='flex items-center gap-2'
+          className='flex items-center'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}
         >
           <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-            Sophina &nbsp;
-            <span className='sm:block hidden'> | Final Year BSc (Hons) Computer Science </span>
+            <span className='sm:block hidden'>Final Year BSc (Hons) Computer Science</span>
           </p>
         </Link>
 

@@ -36,16 +36,16 @@ const Contact = () => {
         <BorderGlow
           className='rounded-2xl'
           edgeSensitivity={34}
-          glowColor='119 141 169'
-          backgroundColor='#415a77'
+          glowColor='171 206 207'
+          backgroundColor='#c4dce0'
           borderRadius={24}
           glowRadius={38}
           glowIntensity={0.8}
           coneSpread={25}
           animated={false}
-          colors={["#778da9", "#e0e1dd", "#415a77"]}
+          colors={["#c4dce0", "#daf4f5", "#abcecf"]}
         >
-          <div className='bg-black-100 px-12 py-10 rounded-2xl border border-white/10'>
+          <div className='glass-panel-strong px-12 py-10 rounded-2xl'>
             <p className={styles.sectionSubText}>Get in touch</p>
             <h3 className={styles.sectionHeadText}>Contact.</h3>
 
@@ -56,16 +56,16 @@ const Contact = () => {
                   key={label}
                   className='rounded-xl'
                   edgeSensitivity={24}
-                  glowColor='119 141 169'
-                  backgroundColor='#1b263b'
+                  glowColor='171 206 207'
+                  backgroundColor='#abcecf'
                   borderRadius={18}
                   glowRadius={26}
                   glowIntensity={0.85}
                   coneSpread={20}
                   animated={false}
-                  colors={["#415a77", "#778da9", "#e0e1dd"]}
+                  colors={["#abcecf", "#c4dce0", "#daf4f5"]}
                 >
-                  <div className='flex w-full flex-col gap-2 sm:grid sm:grid-cols-[140px_max-content] sm:justify-between sm:items-center bg-black-200/50 border border-white/10 rounded-xl px-10 py-5'>
+                  <div className='glass-panel flex w-full flex-col gap-2 sm:grid sm:grid-cols-[140px_max-content] sm:justify-between sm:items-center rounded-xl px-10 py-5'>
                     <span className='text-white font-semibold tracking-wide'>
                       {label}
                     </span>

@@ -22,13 +22,13 @@ const ProjectCard = ({
         tiltMaxAngleY={45}
         transitionSpeed={450}
         scale={1}
-        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
+        className='glass-panel p-5 rounded-2xl sm:w-[360px] w-full'
       >
         <div className='flex justify-between items-center'>
           <h3 className='text-white font-bold text-[22px]'>{name}</h3>
           <div
             onClick={() => window.open(source_code_link, "_blank")}
-            className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
+            className='glass-orb w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
           >
             <img
               src={github}
