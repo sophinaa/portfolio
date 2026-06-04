@@ -35,9 +35,6 @@ const Hero = () => {
                 {name}
               </a>
             ))}
-            <span className='inline-flex items-center text-sm font-semibold tracking-wide text-white bg-[#415a77] px-4 py-2 rounded-full'>
-              CV Upon Request
-            </span>
           </div>
         </div>
       </div>
