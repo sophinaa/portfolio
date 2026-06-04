@@ -70,6 +70,29 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      <div className='absolute bottom-8 right-8 z-10 pointer-events-auto'>
+        <BorderGlow
+          className='rounded-full'
+          edgeSensitivity={24}
+          glowColor='171 206 207'
+          backgroundColor='transparent'
+          borderRadius={999}
+          glowRadius={28}
+          glowIntensity={0.9}
+          coneSpread={20}
+          animated={false}
+          colors={["#c4dce0", "#daf4f5", "#abcecf"]}
+        >
+          <a
+            href='#about'
+            aria-label='Scroll to About section'
+            className='inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/10 text-2xl text-white backdrop-blur hover:bg-white/20 transition-colors duration-200'
+          >
+            ↓
+          </a>
+        </BorderGlow>
+      </div>
     </section>
   );
 };

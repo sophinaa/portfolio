@@ -40,7 +40,7 @@ const About = () => {
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 mx-auto text-center text-secondary text-[17px] max-w-5xl leading-[30px]'
+        className='mt-4 mx-auto text-left text-secondary text-[17px] max-w-5xl leading-[30px]'
       >
         Third-year Computer Science student with a growing passion for software
         development and building practical technology that creates real-world
@@ -56,7 +56,7 @@ const About = () => {
         learn from experienced developers and make a real contribution.
       </motion.p>
 
-      <div className='mt-20 flex flex-wrap gap-10'>
+      <div className='mt-8 flex flex-wrap gap-10'>
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
