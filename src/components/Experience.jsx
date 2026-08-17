@@ -30,6 +30,8 @@ const iconOffsets = {
 };
 
 const ExperienceCard = ({ experience }) => {
+  const tags = experience.technologies || experience.skills;
+
   return (
     <VerticalTimelineElement
       contentStyle={{
@@ -56,13 +58,14 @@ const ExperienceCard = ({ experience }) => {
               } ${iconOffsets[experience.company_name] || ""} object-contain`}
             />
           ) : (
-            <span className='text-white text-[16px] font-semibold text-center leading-tight'>
-              {experience.company_name
-                .split(" ")
-                .map((word) => word[0])
-                .join("")
-                .slice(0, 3)
-                .toUpperCase()}
+            <span className='text-white text-[14px] font-semibold text-center leading-tight'>
+              {experience.iconLabel ||
+                experience.company_name
+                  .split(" ")
+                  .map((word) => word[0])
+                  .join("")
+                  .slice(0, 3)
+                  .toUpperCase()}
             </span>
           )}
         </div>
@@ -93,14 +96,17 @@ const ExperienceCard = ({ experience }) => {
         ))}
       </ul>
 
-      {experience.technologies ? (
-        <div className='mt-5 flex flex-wrap gap-2' aria-label='Technologies used'>
-          {experience.technologies.map((technology) => (
+      {tags ? (
+        <div
+          className='mt-5 flex flex-wrap gap-2'
+          aria-label={experience.skills ? "Skills" : "Technologies used"}
+        >
+          {tags.map((tag) => (
             <span
-              key={technology}
+              key={tag}
               className='rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[12px] font-medium tracking-wide text-white/90'
             >
-              {technology}
+              {tag}
             </span>
           ))}
         </div>

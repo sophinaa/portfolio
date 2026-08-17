@@ -104,6 +104,29 @@ const technologies = [
 
 const experiences = [
   {
+    title: "Vice Sister (Vice President)",
+    company_name: "Dundee University Islamic Society (DUIS)",
+    icon: null,
+    iconLabel: "DUIS",
+    iconBg: "#176b5b",
+    date: "2026 - Present",
+    points: [
+      "Elected Vice Sister (Vice President), representing female members and taking an active role in the leadership and development of the society.",
+      "Work alongside the President, Vice Brother, and wider committee on decision-making, governance, event planning, member engagement, internal processes, and committee coordination.",
+      "Represent members' views, communicate with committee members and external stakeholders, help resolve organisational challenges, and take responsibility for decisions affecting the wider society.",
+    ],
+    skills: [
+      "Leadership",
+      "Communication",
+      "Governance",
+      "Teamwork",
+      "Stakeholder Management",
+      "Conflict Resolution",
+      "Organisation",
+      "Decision-Making",
+    ],
+  },
+  {
     title: "Technology Developer Summer Intern",
     company_name: "Barclays",
     location: "Glasgow, UK",
