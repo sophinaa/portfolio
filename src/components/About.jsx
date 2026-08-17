@@ -38,24 +38,36 @@ const About = () => {
         <h2 className={styles.sectionHeadText}>About me.</h2>
       </motion.div>
 
-      <motion.p
+      <motion.div
         variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 mx-auto text-left text-secondary text-[17px] max-w-5xl leading-[30px]'
+        className='mt-4 mx-auto space-y-4 text-left text-secondary text-[17px] max-w-5xl leading-[30px]'
       >
-        Third-year Computer Science student with a growing passion for
-        software development and building practical technology that creates
-        real-world impact. I enjoy learning by doing, whether that's tackling
-        coding challenges, developing projects, or deepening my knowledge of
-        Java, SQL, data structures, algorithms, and full-stack development.
-        I'm especially drawn to creating efficient, user-focused applications
-        and building the technical confidence to contribute meaningfully to
-        professional teams. Beyond the technical side, I'm driven by personal
-        growth, discipline, and using technology creatively to solve
-        problems. Right now I'm focused on strengthening my programming
-        foundations, expanding my project portfolio, and landing an
-        internship where I can learn from experienced developers and make a
-        real contribution.
-      </motion.p>
+        <p>
+          I’m a final-year Computer Science student with a strong interest in
+          software engineering, full-stack development and building technology
+          that solves real-world problems. I enjoy turning ideas into practical,
+          user-focused applications and have worked across web, mobile, backend,
+          AI and data-driven projects using technologies including Python, Java,
+          Go, JavaScript, React, SQL and Power BI.
+        </p>
+
+        <p>
+          Through both academic projects, hackathons and industry experience,
+          I’ve developed a strong foundation in software development,
+          problem-solving, data structures, algorithms and collaborative
+          development. I particularly enjoy learning new technologies by building
+          with them and understanding how different parts of a system work
+          together.
+        </p>
+
+        <p>
+          I’m driven by continuous improvement, curiosity and creating technology
+          that is genuinely useful. I’m currently focused on strengthening my
+          software engineering skills, expanding my project portfolio and pursuing
+          graduate opportunities where I can contribute to meaningful products
+          while continuing to develop as an engineer.
+        </p>
+      </motion.div>
 
       <div className='mt-8 flex flex-wrap gap-10'>
         {services.map((service, index) => (
