@@ -13,12 +13,14 @@ import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
 const iconSizing = {
+  Barclays: "w-full h-full",
   "Dundee University Computing Society": "w-[95%] h-[95%]",
   "University of St Andrews": "w-[92%] h-[92%]",
   "Angus & Dundee District Volleyball": "w-[90%] h-[90%]",
 };
 
 const iconRounding = {
+  Barclays: "rounded-full",
   "Angus & Dundee District Volleyball": "rounded-3xl bg-white/10 p-1",
   "Dundee University Computing Society": "rounded-full bg-white/10 p-1",
 };
@@ -72,6 +74,11 @@ const ExperienceCard = ({ experience }) => {
           <p className='text-secondary text-[16px] font-semibold' style={{ margin: 0 }}>
             {experience.company_name}
           </p>
+          {experience.location ? (
+            <p className='mt-1 text-white/70 text-[14px]'>
+              {experience.location}
+            </p>
+          ) : null}
         </div>
       </div>
 
@@ -85,6 +92,19 @@ const ExperienceCard = ({ experience }) => {
           </li>
         ))}
       </ul>
+
+      {experience.technologies ? (
+        <div className='mt-5 flex flex-wrap gap-2' aria-label='Technologies used'>
+          {experience.technologies.map((technology) => (
+            <span
+              key={technology}
+              className='rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[12px] font-medium tracking-wide text-white/90'
+            >
+              {technology}
+            </span>
+          ))}
+        </div>
+      ) : null}
     </VerticalTimelineElement>
   );
 };

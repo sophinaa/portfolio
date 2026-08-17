@@ -3,6 +3,7 @@ import {
   backend,
   creator,
   web,
+  barclays,
   meta,
   starbucks,
   tesla,
@@ -102,6 +103,27 @@ const technologies = [
 ];
 
 const experiences = [
+  {
+    title: "Technology Developer Summer Intern",
+    company_name: "Barclays",
+    location: "Glasgow, UK",
+    icon: barclays,
+    iconBg: "#00aeef",
+    date: "June 2026 - August 2026",
+    points: [
+      "Completed a Technology Developer Summer Internship, contributing to real business-focused technical work in a professional technology environment.",
+      "Developed and improved technical solutions using C#, GitLab CI/CD, and Power BI while gaining experience with professional software development workflows, version control, and data visualisation.",
+      "Collaborated across the team, participated in technical discussions and demonstrations, and presented work and progress to stakeholders, strengthening my communication, problem-solving, and teamwork skills.",
+    ],
+    technologies: [
+      "C#",
+      "GitLab",
+      "CI/CD",
+      "Power BI",
+      "Software Development",
+      "Data Visualisation",
+    ],
+  },
   {
     title: "Welfare Officer",
     company_name: "Dundee University Computing Society",
