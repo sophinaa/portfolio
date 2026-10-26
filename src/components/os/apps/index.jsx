@@ -65,8 +65,8 @@ export const apps = {
     label: "locker.exe",
     desktopIcon: <PixelIcon name='locker' className='h-11 w-12' />,
     icon: <PixelIcon name='locker' className='h-4 w-4' />,
-    width: 580,
-    height: 620,
+    width: 640,
+    height: 720,
     Component: LockerApp,
   },
   terminal: {

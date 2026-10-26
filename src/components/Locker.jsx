@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-import { PixelSparkle } from "./Doodles";
 import { barclays, duis, ducs, sophinaPixel } from "../assets";
 
 const metal = "linear-gradient(160deg, #a9adb2 0%, #868a90 45%, #6f7379 100%)";
@@ -59,6 +58,37 @@ const DoorOutside = () => (
   </div>
 );
 
+const Halo = ({ className }) => (
+  <svg viewBox='0 0 120 50' className={className} fill='none' aria-hidden='true'>
+    <ellipse cx='60' cy='26' rx='54' ry='12' stroke='#e2c87a' strokeWidth='2.5' transform='rotate(-6 60 26)' />
+    <path d='M20 14 l3 -9 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3 z' fill='#e2c87a' />
+    <path d='M96 34 l2 -6 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 z' fill='#e2c87a' />
+  </svg>
+);
+
+const CurlyArrow = ({ className }) => (
+  <svg viewBox='0 0 24 24' className={className} fill='none' aria-hidden='true'>
+    <path d='M3 4 C 14 2, 20 8, 18 20' stroke='currentColor' strokeWidth='1.8' strokeLinecap='round' />
+    <path d='M14 17 L18 21 L21 16' stroke='currentColor' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' />
+  </svg>
+);
+
+// Books, a laptop, earbuds and pencils on the locker floor
+const Shelf = () => (
+  <div className='absolute inset-x-0 bottom-0 h-[17%] border-t-2 border-[#26282b] bg-gradient-to-b from-[#4a4c50] to-[#2f3134]'>
+    <div className='absolute bottom-[38%] left-[7%] w-[30%]'>
+      <span className='block h-3 w-[92%] rounded-sm border border-ink bg-[#e8dcb8] sm:h-4' />
+      <span className='block h-3.5 w-full rounded-sm border border-ink bg-[#2c3d78] sm:h-5' />
+      <span className='block h-3 w-[96%] rounded-sm border border-ink bg-[#e8dcb8] sm:h-4' />
+    </div>
+    <span className='absolute bottom-[34%] right-[10%] h-2.5 w-[40%] -skew-x-[20deg] rounded-sm border border-ink bg-gradient-to-r from-[#1b1c1f] to-[#3a3b40] sm:h-3' />
+    <span className='absolute bottom-[54%] right-[18%] h-3 w-5 rounded-[6px] border border-ink bg-[#f2f0ea] sm:h-4 sm:w-7' />
+    <span className='absolute bottom-[16%] left-[40%] h-1 w-[22%] rotate-[8deg] rounded-full bg-tomato' />
+    <span className='absolute bottom-[10%] left-[46%] h-1 w-[20%] -rotate-[6deg] rounded-full bg-[#3b6cf0]' />
+    <span className='absolute bottom-[22%] left-[52%] h-1 w-[16%] rotate-[2deg] rounded-full bg-[#5fd47a]' />
+  </div>
+);
+
 const Locker = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
@@ -73,47 +103,58 @@ const Locker = () => {
   }, [inView]);
 
   return (
-    <div ref={ref} className='relative mx-auto w-fit pr-[110px] sm:pr-[150px]'>
+    <div ref={ref} className='relative mx-auto w-fit pr-[96px] sm:pr-[170px]'>
       <div
-        className='relative h-[380px] w-[230px] rounded-[14px] border-2 border-ink p-2.5 shadow-sticker-lg sm:h-[480px] sm:w-[300px]'
+        className='relative h-[440px] w-[250px] rounded-[14px] border-2 border-ink p-2.5 shadow-sticker-lg sm:h-[560px] sm:w-[340px]'
         style={{ background: metal, perspective: 1800 }}
       >
         {/* inside of the locker */}
         <div className='relative h-full w-full overflow-hidden rounded-lg bg-[#3a3c40] shadow-[inset_0_10px_30px_rgba(0,0,0,0.7)]'>
-          <span className='absolute left-1/2 top-2 h-1.5 w-2/3 -translate-x-1/2 rounded-full bg-[#fff6d8] shadow-[0_0_22px_8px_rgba(255,236,170,0.45)]' />
-          <span className='pointer-events-none absolute inset-x-0 top-0 h-2/3 bg-[radial-gradient(ellipse_at_top,rgba(255,236,170,0.22),transparent_70%)]' />
+          <span className='absolute left-1/2 top-2 z-10 h-1.5 w-2/3 -translate-x-1/2 rounded-full bg-[#fff6d8] shadow-[0_0_22px_8px_rgba(255,236,170,0.45)]' />
+          <span className='pointer-events-none absolute inset-x-0 top-0 z-10 h-2/3 bg-[radial-gradient(ellipse_at_top,rgba(255,236,170,0.18),transparent_70%)]' />
 
-          <div className='absolute inset-x-9 top-8 sm:inset-x-8 sm:top-9'>
-            <span className='absolute -left-4 -top-1 z-10 h-5 w-12 -rotate-[35deg] bg-[#d9d4c4]/80 sm:w-14' />
-            <span className='absolute -right-4 -top-1 z-10 h-5 w-12 rotate-[35deg] bg-[#d9d4c4]/80 sm:w-14' />
+          {/* the poster */}
+          <div className='absolute inset-x-[12%] top-[7%]'>
             <img
               src={sophinaPixel}
-              alt='Pixel-art portrait of Sophina'
-              className='block aspect-square w-full border-[3px] border-[#e6e2d6] object-cover shadow-[0_6px_14px_rgba(0,0,0,0.5)] [image-rendering:pixelated]'
+              alt='Pixel-art portrait of Sophina, taped up inside her locker'
+              className='block aspect-square w-full object-cover shadow-[0_6px_14px_rgba(0,0,0,0.5)] [image-rendering:pixelated]'
             />
-            <svg viewBox='0 0 120 40' className='pointer-events-none absolute left-[46%] top-[1%] w-20 -translate-x-1/2 sm:w-24' fill='none' aria-hidden='true'>
-              <ellipse cx='60' cy='20' rx='52' ry='11' stroke='#ffd95a' strokeWidth='2.5' transform='rotate(-8 60 20)' />
-            </svg>
-            <PixelSparkle className='blink absolute -right-2 top-1 h-4 w-4 text-butter' />
-            <p className='pointer-events-none absolute -bottom-4 -left-4 z-10 -rotate-[10deg] font-display text-2xl font-bold text-butter drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)] sm:text-3xl'>
+            {["-left-3 -top-1 -rotate-[35deg]", "-right-3 -top-1 rotate-[35deg]", "-left-3 -bottom-1 rotate-[35deg]", "-right-3 -bottom-1 -rotate-[35deg]"].map(
+              (position) => (
+                <span key={position} className={`absolute h-4 w-10 bg-[#8d8b84]/80 sm:w-12 ${position}`} />
+              )
+            )}
+            <Halo className='pointer-events-none absolute left-1/2 top-[1%] w-[46%] -translate-x-1/2' />
+            <p className='absolute -left-[10%] top-[8%] -rotate-[14deg] font-hand text-2xl font-bold leading-[0.8] text-gold sm:text-3xl'>
               Sophina
+              <svg viewBox='0 0 80 10' className='mt-0.5 block w-16 sm:w-20' fill='none' aria-hidden='true'>
+                <path d='M2 6 Q 30 1 78 4 M8 9 Q 34 5 70 7' stroke='currentColor' strokeWidth='1.8' strokeLinecap='round' />
+              </svg>
             </p>
           </div>
 
-          <p className='absolute inset-x-0 bottom-[5.5rem] whitespace-nowrap text-center font-display text-[18px] font-bold leading-none text-butter sm:bottom-[5.75rem] sm:text-[24px]'>
-            Software Engineer
+          <p className='absolute left-[10%] top-[46%] -rotate-[4deg] font-hand text-[34px] font-bold leading-[0.75] text-gold sm:top-[47%] sm:text-[44px]'>
+            Software
+            <span className='block pl-10 sm:pl-14'>Engineer</span>
           </p>
 
-          <div className='absolute inset-x-3 bottom-3 grid grid-cols-2 gap-2 font-term leading-none text-paper/90'>
-            <p className='text-[15px] sm:text-[18px]'>
-              <span className='block text-[18px] text-butter sm:text-[22px]'>about_me.txt</span>
-              final-year CS, loves building useful things
+          {/* notes, written straight onto the locker */}
+          <div className='absolute inset-x-[7%] top-[64%] grid grid-cols-2 gap-2 font-hand leading-[1.05] text-[#e9e4d6] sm:gap-3'>
+            <p className='text-xs sm:text-base'>
+              <span className='block whitespace-nowrap text-base text-gold sm:text-[22px]'>About me..</span>
+              final-year CS student who loves building useful things
             </p>
-            <p className='text-[15px] sm:text-[18px]'>
-              <span className='block text-[18px] text-butter sm:text-[22px]'>goals.txt</span>
+            <p className='text-xs sm:text-base'>
+              <span className='flex items-end gap-1 whitespace-nowrap text-base text-gold sm:text-[22px]'>
+                I&apos;m here to-
+                <CurlyArrow className='mb-1 h-4 w-4 shrink-0 text-gold sm:h-5 sm:w-5' />
+              </span>
               land a grad role &amp; ship cool stuff
             </p>
           </div>
+
+          <Shelf />
         </div>
 
         {/* the door, hinged on the right */}

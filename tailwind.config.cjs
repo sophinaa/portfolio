@@ -26,11 +26,13 @@ module.exports = {
         lime: "#7dff7a",
         mint: "#5fd4c4",
         butter: "#ffd23f",
+        gold: "#e2c87a",
       },
       fontFamily: {
         display: ['"Pixelify Sans"', "system-ui", "sans-serif"],
         term: ['"VT323"', "ui-monospace", "monospace"],
         label: ['"Silkscreen"', "ui-monospace", "monospace"],
+        hand: ['"Caveat"', "cursive"],
         sans: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
       },
       boxShadow: {

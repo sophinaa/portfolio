@@ -19,7 +19,7 @@ const Clock = () => {
   );
 };
 
-const Taskbar = ({ windows, activeId, onOpen, onTaskClick, onShutdown }) => {
+const Taskbar = ({ windows, activeId, onOpen, onTaskClick, onShutdown, onTidy }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -95,6 +95,18 @@ const Taskbar = ({ windows, activeId, onOpen, onTaskClick, onShutdown }) => {
                 </button>
               ))}
               <div className='my-1 border-t-2 border-ink/20' />
+              <button
+                type='button'
+                role='menuitem'
+                onClick={() => {
+                  setMenuOpen(false);
+                  onTidy();
+                }}
+                className='flex w-full items-center gap-3 px-2 py-1.5 text-left text-sm hover:bg-navy hover:text-white'
+              >
+                <span className='flex h-6 w-6 items-center justify-center'>▦</span>
+                Tidy up desktop
+              </button>
               <button
                 type='button'
                 role='menuitem'
