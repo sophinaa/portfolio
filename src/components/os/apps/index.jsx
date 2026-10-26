@@ -20,8 +20,8 @@ export const apps = {
     label: "me.jpg",
     desktopIcon: <MeIcon className='h-11 w-11' />,
     icon: <MeIcon className='h-4 w-4 border' />,
-    width: 760,
-    height: 560,
+    width: 780,
+    height: 640,
     Component: AboutApp,
   },
   projects: {
@@ -29,8 +29,8 @@ export const apps = {
     label: "Projects",
     desktopIcon: <PixelIcon name='folder' className='h-11 w-12' />,
     icon: <PixelIcon name='folder' className='h-4 w-4' />,
-    width: 860,
-    height: 600,
+    width: 960,
+    height: 660,
     Component: ProjectsApp,
   },
   experience: {
@@ -38,8 +38,8 @@ export const apps = {
     label: "Experience",
     desktopIcon: <PixelIcon name='briefcase' className='h-11 w-12' />,
     icon: <PixelIcon name='briefcase' className='h-4 w-4' />,
-    width: 640,
-    height: 560,
+    width: 700,
+    height: 620,
     Component: ExperienceApp,
   },
   skills: {

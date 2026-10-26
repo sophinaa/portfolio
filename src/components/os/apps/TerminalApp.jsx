@@ -45,7 +45,7 @@ const TerminalApp = ({ open, close }) => {
       case "whoami":
         return ["sophina: final-year CS student @ Dundee, ex-Barclays intern, 2x hackathon winner (DUCS + GUTS/BlackRock)."];
       case "projects":
-        return projects.map((project) => `  ${project.name.padEnd(36)} ${project.tags.join(", ")}`);
+        return projects.map((project) => `  ${project.year.padEnd(12)} ${project.name.padEnd(36)} ${project.tags.join(", ")}`);
       case "experience":
         return experiences.map((item) => `  ${item.date.padEnd(14)} ${item.role}, ${item.org}`);
       case "skills":
