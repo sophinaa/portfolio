@@ -91,7 +91,7 @@ export const projects = [
   {
     name: "Campus Companion",
     year: "2026",
-    award: "Hackathon winner",
+    award: "DUCS hackathon winner",
     blurb: "An AI-powered student learning platform built in 24 hours with a cross-university team.",
     points: [
       "Python, Flask, JavaScript and SQLite",
@@ -216,6 +216,14 @@ export const experiences = [
     date: "2026 – now",
     line: "Helping lead DUIS through its 100th year: events, operations and work with university and external partners.",
     icon: duis,
+    kind: "leadership",
+  },
+  {
+    role: "Social Media Manager",
+    org: "St Andrews Calisthenics",
+    date: "2026 – now",
+    line: "Run the club's social media: content, event promotion and growing the community.",
+    icon: null,
     kind: "leadership",
   },
   {

@@ -80,6 +80,7 @@ const Taskbar = ({ windows, activeId, onOpen, onTaskClick, onShutdown, onTidy })
                 <div>
                   <p className='font-display text-lg font-bold leading-none'>Sophina</p>
                   <p className='font-label text-[10px] uppercase text-ink/60'>Software engineer</p>
+                  <p className='font-label text-[10px] uppercase text-navy'>🏆 2x hackathon winner</p>
                 </div>
               </div>
               {desktopOrder.map((id) => (
