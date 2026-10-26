@@ -15,4 +15,4 @@ npm run dev
 Open the printed `http://localhost:5173` URL to explore the site.
 
 ### Contact
-Questions or feedback? Send a message via the contact form or email `sophina0212@gmail.com`.***
+Questions or feedback? Send a message via the contact form or email `sophinaakram2004@gmail.com`.***

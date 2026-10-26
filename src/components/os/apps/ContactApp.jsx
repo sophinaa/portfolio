@@ -4,7 +4,7 @@ import { contact } from "../../../constants";
 
 // A tiny mail client. "Send" hands the message to the visitor's own email app.
 const ContactApp = () => {
-  const [subject, setSubject] = useState("hiya Sophina!");
+  const [subject, setSubject] = useState("hello Sophina!");
   const [body, setBody] = useState("");
   const [copied, setCopied] = useState(false);
 

@@ -9,7 +9,7 @@ export const navLinks = [
 ];
 
 export const contact = {
-  email: "sophina0212@gmail.com",
+  email: "sophinaakram2004@gmail.com",
   github: "https://github.com/sophinaa",
   linkedin: "https://www.linkedin.com/in/sophinaa",
 };
