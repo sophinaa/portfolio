@@ -5,13 +5,8 @@ import {
   web,
   barclays,
   meta,
-  starbucks,
-  tesla,
   addva,
   standrews,
-  carrent,
-  jobit,
-  tripguide,
 } from "../assets";
 
 export const navLinks = [
@@ -45,6 +40,10 @@ export const socialLinks = [
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/sophinaa",
+  },
+  {
+    name: "CV",
+    url: `${import.meta.env.BASE_URL}SophinaAkram.pdf`,
   },
 ];
 
@@ -242,7 +241,6 @@ const projects = [
         color: "blue-text-gradient",
       },
     ],
-    // image: carrent,
     source_code_link: "https://github.com/",
   },
   {
@@ -263,7 +261,6 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    // image: jobit,
     source_code_link: "https://github.com/sophinaa/HalalWay",
   },
   {
@@ -284,7 +281,6 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    // image: tripguide,
     source_code_link: "https://github.com/sophinaa/AlpineTelemetryDashboard",
   },
 ];

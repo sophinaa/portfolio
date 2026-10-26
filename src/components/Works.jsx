@@ -26,16 +26,19 @@ const ProjectCard = ({
       >
         <div className='flex justify-between items-center'>
           <h3 className='text-white font-bold text-[22px]'>{name}</h3>
-          <div
-            onClick={() => window.open(source_code_link, "_blank")}
+          <a
+            href={source_code_link}
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label={`${name} source code on GitHub`}
             className='glass-orb w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
           >
             <img
               src={github}
-              alt='source code'
+              alt=''
               className='w-1/2 h-1/2 object-contain'
             />
-          </div>
+          </a>
         </div>
 
         <div className='mt-4'>

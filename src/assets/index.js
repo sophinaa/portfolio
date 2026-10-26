@@ -1,4 +1,4 @@
- const logo = "/Omnium.jpeg";
+const logo = "/Omnium.jpeg";
 import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
@@ -23,15 +23,8 @@ import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 
 import meta from "./company/DUCS.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
 import standrews from "./company/University_of_St_Andrews_arms.svg.png";
 import addva from "./company/addva.jpg";
-
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
 
 export {
   logo,
@@ -57,12 +50,6 @@ export {
   typescript,
   threejs,
   meta,
-  shopify,
   addva,
-  starbucks,
-  tesla,
   standrews,
-  carrent,
-  jobit,
-  tripguide,
 };
