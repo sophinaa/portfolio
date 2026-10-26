@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-import PixelPhoto from "./PixelPhoto";
-import { CurlyArrow, Sparkle } from "./Doodles";
-import { barclays, duis, ducs, sophina } from "../assets";
+import { PixelSparkle } from "./Doodles";
+import { barclays, duis, ducs, sophinaPixel } from "../assets";
 
 const metal = "linear-gradient(160deg, #a9adb2 0%, #868a90 45%, #6f7379 100%)";
 const metalInside = "linear-gradient(200deg, #9a9ea3 0%, #7b7f85 60%, #686c72 100%)";
@@ -52,7 +51,7 @@ const DoorOutside = () => (
   >
     <Vents className='absolute inset-x-8 top-8' />
     <Vents className='absolute inset-x-8 bottom-8' />
-    <span className='absolute left-1/2 top-[38%] -translate-x-1/2 rounded-sm border border-[#55595e] bg-[#e6e2d6] px-3 py-1 font-mono text-[11px] font-bold tracking-[0.2em] text-ink'>
+    <span className='absolute left-1/2 top-[38%] -translate-x-1/2 rounded-sm border border-[#55595e] bg-[#e6e2d6] px-3 py-1 font-label text-[11px] tracking-[0.2em] text-ink'>
       NO. 26
     </span>
     {/* handle on the opposite side to the hinge */}
@@ -85,34 +84,33 @@ const Locker = () => {
           <span className='pointer-events-none absolute inset-x-0 top-0 h-2/3 bg-[radial-gradient(ellipse_at_top,rgba(255,236,170,0.22),transparent_70%)]' />
 
           <div className='absolute inset-x-9 top-8 sm:inset-x-8 sm:top-9'>
-            <span className='tape -left-4 -top-2 z-10 w-12 -rotate-[35deg] bg-[#d9d4c4]/80 sm:w-14' />
-            <span className='tape -right-4 -top-2 z-10 w-12 rotate-[35deg] bg-[#d9d4c4]/80 sm:w-14' />
-            <PixelPhoto
-              src={sophina}
-              alt='Sophina smiling, resting her chin on her hand'
-              className='aspect-[4/5] w-full border-[3px] border-[#e6e2d6] shadow-[0_6px_14px_rgba(0,0,0,0.5)]'
+            <span className='absolute -left-4 -top-1 z-10 h-5 w-12 -rotate-[35deg] bg-[#d9d4c4]/80 sm:w-14' />
+            <span className='absolute -right-4 -top-1 z-10 h-5 w-12 rotate-[35deg] bg-[#d9d4c4]/80 sm:w-14' />
+            <img
+              src={sophinaPixel}
+              alt='Pixel-art portrait of Sophina'
+              className='block aspect-square w-full border-[3px] border-[#e6e2d6] object-cover shadow-[0_6px_14px_rgba(0,0,0,0.5)] [image-rendering:pixelated]'
             />
             <svg viewBox='0 0 120 40' className='pointer-events-none absolute left-[46%] top-[1%] w-20 -translate-x-1/2 sm:w-24' fill='none' aria-hidden='true'>
               <ellipse cx='60' cy='20' rx='52' ry='11' stroke='#ffd95a' strokeWidth='2.5' transform='rotate(-8 60 20)' />
             </svg>
-            <Sparkle className='absolute -right-2 top-1 h-4 w-4 text-butter' />
-            <p className='pointer-events-none absolute -bottom-4 -left-4 z-10 -rotate-[10deg] font-hand text-2xl font-bold text-butter drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)] sm:text-3xl'>
+            <PixelSparkle className='blink absolute -right-2 top-1 h-4 w-4 text-butter' />
+            <p className='pointer-events-none absolute -bottom-4 -left-4 z-10 -rotate-[10deg] font-display text-2xl font-bold text-butter drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)] sm:text-3xl'>
               Sophina
             </p>
           </div>
 
-          <p className='absolute inset-x-0 bottom-[5.5rem] -rotate-3 text-center font-hand text-[24px] font-bold leading-none text-butter sm:bottom-[5.75rem] sm:text-[34px]'>
+          <p className='absolute inset-x-0 bottom-[5.5rem] whitespace-nowrap text-center font-display text-[18px] font-bold leading-none text-butter sm:bottom-[5.75rem] sm:text-[24px]'>
             Software Engineer
           </p>
-          <CurlyArrow className='absolute bottom-[3.5rem] right-3 hidden h-8 w-10 invert sm:block' />
 
-          <div className='absolute inset-x-3 bottom-3 grid grid-cols-2 gap-2 font-hand leading-tight text-paper/90'>
-            <p className='text-[12px] sm:text-[15px]'>
-              <span className='block text-[15px] text-butter sm:text-lg'>about me..</span>
+          <div className='absolute inset-x-3 bottom-3 grid grid-cols-2 gap-2 font-term leading-none text-paper/90'>
+            <p className='text-[15px] sm:text-[18px]'>
+              <span className='block text-[18px] text-butter sm:text-[22px]'>about_me.txt</span>
               final-year CS, loves building useful things
             </p>
-            <p className='text-[12px] sm:text-[15px]'>
-              <span className='block text-[15px] text-butter sm:text-lg'>i&apos;m here to..</span>
+            <p className='text-[15px] sm:text-[18px]'>
+              <span className='block text-[18px] text-butter sm:text-[22px]'>goals.txt</span>
               land a grad role &amp; ship cool stuff
             </p>
           </div>
@@ -135,8 +133,8 @@ const Locker = () => {
         </motion.button>
       </div>
 
-      <p className='mt-5 text-center font-hand text-xl text-ink/60'>
-        {open ? "tap the photo ✦ tap the door" : "tap the door to open"}
+      <p className='mt-5 text-center font-term text-2xl text-white'>
+        {open ? "> tap the door to close" : "> tap the door to open"}
       </p>
     </div>
   );

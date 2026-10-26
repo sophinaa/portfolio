@@ -7,7 +7,7 @@ const Bars = () => {
 
   return (
     <div className='flex h-full flex-col justify-between rounded-2xl border-2 border-ink bg-paper p-5'>
-      <div className='flex items-center justify-between font-mono text-[10px] uppercase tracking-widest'>
+      <div className='flex items-center justify-between font-label text-[10px] uppercase tracking-widest'>
         <span>events / sec</span>
         <span className='flex items-center gap-1.5'>
           <span className='h-2 w-2 animate-pulse rounded-full bg-tomato' /> live
@@ -24,7 +24,7 @@ const Bars = () => {
           />
         ))}
       </div>
-      <div className='flex gap-2 font-mono text-[10px] uppercase'>
+      <div className='flex gap-2 font-label text-[10px] uppercase'>
         <span className='rounded-full border-2 border-ink bg-mint px-2 py-0.5'>gateway ok</span>
         <span className='rounded-full border-2 border-ink bg-butter px-2 py-0.5'>jwt ✓</span>
       </div>
@@ -41,8 +41,8 @@ const MapPins = () => {
   ];
 
   return (
-    <div className='mx-auto h-full max-w-[220px] rounded-[2rem] border-2 border-ink bg-ink p-2'>
-      <div className='relative h-full min-h-[260px] overflow-hidden rounded-[1.6rem] bg-mint'>
+    <div className='mx-auto h-full max-w-[220px] border-2 border-ink bg-ink p-2'>
+      <div className='relative h-full min-h-[260px] overflow-hidden bg-mint'>
         <svg className='absolute inset-0 h-full w-full' viewBox='0 0 200 300' preserveAspectRatio='none' aria-hidden='true'>
           <path d='M-10 80 Q 80 120 210 60' stroke='#f4efe4' strokeWidth='14' fill='none' />
           <path d='M60 -10 Q 90 150 40 310' stroke='#f4efe4' strokeWidth='10' fill='none' />
@@ -59,7 +59,7 @@ const MapPins = () => {
         ))}
         <div className='absolute inset-x-3 bottom-3 rounded-xl border-2 border-ink bg-paper p-2.5 text-ink'>
           <p className='text-xs font-bold'>Nearby spot</p>
-          <p className='font-mono text-[10px]'>★★★★☆ · 0.3 mi</p>
+          <p className='font-label text-[10px]'>★★★★☆ · 0.3 mi</p>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@ const MapPins = () => {
 
 const Laps = () => (
   <div className='flex h-full flex-col justify-between rounded-2xl border-2 border-ink bg-ink p-5 text-paper'>
-    <div className='flex items-center justify-between font-mono text-[10px] uppercase tracking-widest'>
+    <div className='flex items-center justify-between font-label text-[10px] uppercase tracking-widest'>
       <span>lap 23 vs lap 24</span>
       <span className='text-lime'>-0.214s</span>
     </div>
@@ -89,7 +89,7 @@ const Laps = () => (
         />
       ))}
     </svg>
-    <div className='flex gap-4 font-mono text-[10px] uppercase'>
+    <div className='flex gap-4 font-label text-[10px] uppercase'>
       <span className='flex items-center gap-1.5'><span className='h-2 w-4 rounded bg-lime' /> soft</span>
       <span className='flex items-center gap-1.5'><span className='h-2 w-4 rounded bg-lilac' /> medium</span>
     </div>

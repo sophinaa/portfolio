@@ -2,25 +2,40 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
+    // Everything is square in pixel land
+    borderRadius: {
+      none: "0",
+      DEFAULT: "0",
+      sm: "0",
+      md: "0",
+      lg: "0",
+      xl: "0",
+      "2xl": "0",
+      "3xl": "0",
+      full: "0",
+    },
     extend: {
       colors: {
-        paper: "#f4efe4",
-        ink: "#16130f",
-        tomato: "#ef4b32",
-        lilac: "#a99bff",
-        lime: "#d8f650",
-        mint: "#8fdcb2",
-        butter: "#ffd95a",
+        desktop: "#2a7f7a",
+        paper: "#efe9d8",
+        shade: "#8a8474",
+        ink: "#0b0b0b",
+        navy: "#1b2a8c",
+        tomato: "#ff4f8b",
+        lilac: "#9d8cff",
+        lime: "#7dff7a",
+        mint: "#5fd4c4",
+        butter: "#ffd23f",
       },
       fontFamily: {
-        display: ['"Bagel Fat One"', "system-ui", "sans-serif"],
-        hand: ['"Caveat"', "cursive"],
-        mono: ['"Space Mono"', "ui-monospace", "monospace"],
-        sans: ['"DM Sans"', "system-ui", "sans-serif"],
+        display: ['"Pixelify Sans"', "system-ui", "sans-serif"],
+        term: ['"VT323"', "ui-monospace", "monospace"],
+        label: ['"Silkscreen"', "ui-monospace", "monospace"],
+        sans: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
       },
       boxShadow: {
-        sticker: "3px 3px 0 0 #16130f",
-        "sticker-lg": "6px 6px 0 0 #16130f",
+        sticker: "4px 4px 0 0 #0b0b0b",
+        "sticker-lg": "8px 8px 0 0 #0b0b0b",
       },
       screens: {
         xs: "450px",
