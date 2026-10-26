@@ -41,10 +41,6 @@ export const socialLinks = [
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/sophinaa",
   },
-  {
-    name: "CV",
-    url: `${import.meta.env.BASE_URL}SophinaAkram.pdf`,
-  },
 ];
 
 const services = [
