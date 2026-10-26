@@ -1,146 +1,107 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 
-import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { menu, close } from "../assets";
-import PillNav from "./PillNav";
 
 const Navbar = () => {
-  const [toggle, setToggle] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeHref, setActiveHref] = useState("#about");
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const sectionIds = navLinks.map((nav) => nav.id);
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
+    const sections = navLinks
+      .map((nav) => document.getElementById(nav.id))
       .filter(Boolean);
-
-    if (!sections.length) {
-      return undefined;
-    }
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (!visibleEntries.length) {
-          return;
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) {
+          setActive(visible.target.id);
         }
-
-        const nextId = visibleEntries[0].target.id;
-        setActiveHref(`#${nextId}`);
       },
-      {
-        rootMargin: "-20% 0px -55% 0px",
-        threshold: [0.2, 0.35, 0.5, 0.65],
-      }
+      { rootMargin: "-45% 0px -50% 0px" }
     );
 
     sections.forEach((section) => observer.observe(section));
 
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <nav
-      className={`${
-        styles.paddingX
-      } w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-[#0d1b2a]" : "bg-[#0d1b2a]/90 backdrop-blur-sm"
-      }`}
-    >
-      <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
+    <header className='fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6'>
+      <motion.div
+        style={{ scaleX: progress }}
+        className='fixed inset-x-0 top-0 h-1.5 origin-left bg-tomato'
+      />
+
+      <nav className='mx-auto flex max-w-6xl items-center justify-between rounded-full border-2 border-ink bg-paper/90 py-2 pl-5 pr-2 shadow-sticker backdrop-blur'>
         <a
-          href='#'
-          className='flex items-center'
-          onClick={(event) => {
-            event.preventDefault();
-            setActiveHref("#about");
-            window.scrollTo(0, 0);
-          }}
+          href='#top'
+          onClick={() => setOpen(false)}
+          className='group flex items-center gap-1.5 font-display text-2xl leading-none'
         >
-          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-            <span className='sm:block hidden'>Final Year BSc (Hons) Computer Science</span>
-          </p>
+          sophina
+          <span className='inline-block text-tomato transition-transform duration-500 group-hover:rotate-180'>
+            ✱
+          </span>
         </a>
 
-        <PillNav
-          items={navLinks.map((nav) => ({
-            label: nav.title,
-            href: `#${nav.id}`,
-          }))}
-          activeHref={activeHref}
-          baseColor='rgba(13, 27, 42, 0.2)'
-          pillColor='#ffffff'
-          hoveredPillTextColor='#daf4f5'
-          pillTextColor='#0d1b2a'
-          theme='light'
-          initialLoadAnimation={false}
-          onItemClick={(href) => {
-            setActiveHref(href);
-          }}
-        />
+        <ul className='hidden items-center gap-1 md:flex'>
+          {navLinks.map((nav) => (
+            <li key={nav.id}>
+              <a
+                href={`#${nav.id}`}
+                className={`rounded-full px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
+                  active === nav.id ? "bg-ink text-paper" : "hover:bg-ink/10"
+                }`}
+              >
+                {nav.title}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
-          <button
-            type='button'
-            aria-label={toggle ? "Close menu" : "Open menu"}
-            aria-expanded={toggle}
-            onClick={() => setToggle(!toggle)}
-          >
-            <img
-              src={toggle ? close : menu}
-              alt=''
-              className='w-[28px] h-[28px] object-contain'
-            />
-          </button>
+        <a
+          href='#contact'
+          className='hidden rounded-full border-2 border-ink bg-lime px-5 py-2 font-mono text-xs font-bold uppercase tracking-widest transition-transform hover:-rotate-3 hover:scale-105 md:inline-block'
+        >
+          Say hi ↗
+        </a>
 
-          <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
-          >
-            <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
-              {navLinks.map((nav) => (
-                <li
-                  key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    activeHref === `#${nav.id}` ? "text-white" : "text-secondary"
-                  }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActiveHref(`#${nav.id}`);
-                  }}
-                >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
+        <button
+          type='button'
+          aria-expanded={open}
+          aria-controls='mobile-menu'
+          onClick={() => setOpen(!open)}
+          className='rounded-full border-2 border-ink bg-lime px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest md:hidden'
+        >
+          {open ? "Close" : "Menu"}
+        </button>
+      </nav>
+
+      {open ? (
+        <motion.ul
+          id='mobile-menu'
+          initial={{ opacity: 0, y: -10, rotate: -2 }}
+          animate={{ opacity: 1, y: 0, rotate: 0 }}
+          className='mx-auto mt-3 flex max-w-6xl flex-col gap-1 rounded-3xl border-2 border-ink bg-paper p-3 shadow-sticker md:hidden'
+        >
+          {navLinks.map((nav) => (
+            <li key={nav.id}>
+              <a
+                href={`#${nav.id}`}
+                onClick={() => setOpen(false)}
+                className='block rounded-2xl px-4 py-3 font-display text-2xl hover:bg-lime'
+              >
+                {nav.title}
+              </a>
+            </li>
+          ))}
+        </motion.ul>
+      ) : null}
+    </header>
   );
 };
 

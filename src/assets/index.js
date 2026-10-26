@@ -1,55 +1,7 @@
-const logo = "/Omnium.jpeg";
-import backend from "./backend.png";
-import creator from "./creator.png";
-import mobile from "./mobile.png";
-import web from "./web.png";
 import barclays from "./barclaysbird.jpeg";
-import github from "./github.png";
-import menu from "./menu.svg";
-import close from "./close.svg";
-
-import css from "./tech/css.png";
-import docker from "./tech/docker.png";
-import figma from "./tech/figma.png";
-import git from "./tech/git.png";
-import html from "./tech/html.png";
-import javascript from "./tech/javascript.png";
-import mongodb from "./tech/mongodb.png";
-import nodejs from "./tech/nodejs.png";
-import reactjs from "./tech/reactjs.png";
-import redux from "./tech/redux.png";
-import tailwind from "./tech/tailwind.png";
-import typescript from "./tech/typescript.png";
-import threejs from "./tech/threejs.svg";
-
-import meta from "./company/DUCS.png";
-import standrews from "./company/University_of_St_Andrews_arms.svg.png";
+import duis from "./duis.png";
+import ducs from "./company/DUCS.png";
 import addva from "./company/addva.jpg";
+import standrews from "./company/University_of_St_Andrews_arms.svg.png";
 
-export {
-  logo,
-  backend,
-  creator,
-  mobile,
-  web,
-  barclays,
-  github,
-  menu,
-  close,
-  css,
-  docker,
-  figma,
-  git,
-  html,
-  javascript,
-  mongodb,
-  nodejs,
-  reactjs,
-  redux,
-  tailwind,
-  typescript,
-  threejs,
-  meta,
-  addva,
-  standrews,
-};
+export { barclays, duis, ducs, addva, standrews };

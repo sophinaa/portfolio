@@ -1,89 +1,76 @@
-import React from "react";
-import Tilt from "react-parallax-tilt";
-import { motion } from "framer-motion";
-
-import { styles } from "../styles";
-import { github } from "../assets";
-import { SectionWrapper } from "../hoc";
+import Section, { SectionHeading } from "./Section";
+import ProjectArt from "./ProjectArt";
 import { projects } from "../constants";
-import { fadeIn, textVariant } from "../utils/motion";
 
-const ProjectCard = ({
-  index,
-  name,
-  description,
-  tags,
-  source_code_link,
-}) => {
-  return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
-      <Tilt
-        tiltMaxAngleX={45}
-        tiltMaxAngleY={45}
-        transitionSpeed={450}
-        scale={1}
-        className='glass-panel p-5 rounded-2xl sm:w-[360px] w-full'
-      >
-        <div className='flex justify-between items-center'>
-          <h3 className='text-white font-bold text-[22px]'>{name}</h3>
-          <a
-            href={source_code_link}
-            target='_blank'
-            rel='noopener noreferrer'
-            aria-label={`${name} source code on GitHub`}
-            className='glass-orb w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
-          >
-            <img
-              src={github}
-              alt=''
-              className='w-1/2 h-1/2 object-contain'
-            />
-          </a>
-        </div>
+// Cards stick and pile up on top of each other as you scroll
+const ProjectCard = ({ project, index }) => (
+  <article
+    className='sticky'
+    style={{ top: `${6 + index * 1.5}rem` }}
+  >
+    <div
+      className={`relative mb-10 rounded-[2rem] border-2 border-ink p-6 text-ink shadow-[0_-8px_30px_rgba(0,0,0,0.35)] md:p-10 ${project.color}`}
+    >
+      <span className='absolute -top-5 left-8 rounded-full border-2 border-ink bg-paper px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-widest'>
+        ✦ Project 0{index + 1}
+      </span>
 
-        <div className='mt-4'>
-          <p className='mt-2 text-secondary text-[14px]'>{description}</p>
-        </div>
+      <div className='grid items-center gap-8 md:grid-cols-[1.2fr_1fr]'>
+        <div>
+          <h3 className='font-display text-4xl leading-none md:text-6xl'>{project.name}</h3>
+          <p className='mt-5 max-w-md text-lg leading-relaxed'>{project.blurb}</p>
 
-        <div className='mt-4 flex flex-wrap gap-2'>
-          {tags.map((tag) => (
-            <p
-              key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
+          <ul className='mt-6 flex flex-wrap gap-2'>
+            {project.tags.map((tag, tagIndex) => (
+              <li
+                key={tag}
+                className={`rounded-full border-2 border-ink bg-paper px-3 py-1 font-mono text-xs font-bold ${
+                  tagIndex % 2 ? "rotate-2" : "-rotate-2"
+                }`}
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+
+          {project.link ? (
+            <a
+              href={project.link}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='mt-8 inline-block rounded-full border-2 border-ink bg-ink px-6 py-3 font-mono text-xs font-bold uppercase tracking-widest text-paper transition-transform hover:-rotate-2 hover:scale-105'
             >
-              #{tag.name}
-            </p>
-          ))}
+              View code ↗
+            </a>
+          ) : (
+            <p className='mt-8 font-hand text-2xl'>repo coming soon ✎</p>
+          )}
         </div>
-      </Tilt>
-    </motion.div>
-  );
-};
 
-const Works = () => {
-  return (
-    <>
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} `}>My work</p>
-        <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
-      </motion.div>
-
-      <div className='w-full flex'>
-        <motion.p
-          variants={fadeIn("", "", 0.1, 1)}
-          className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
-        >
-          Below are a few examples of projects that I have completed.
-        </motion.p>
+        <div className='h-64 md:h-72'>
+          <ProjectArt kind={project.art} />
+        </div>
       </div>
+    </div>
+  </article>
+);
 
-      <div className='mt-20 flex flex-wrap gap-7'>
-        {projects.map((project, index) => (
-          <ProjectCard key={`project-${index}`} index={index} {...project} />
-        ))}
-      </div>
-    </>
-  );
-};
+const Works = () => (
+  <Section id='projects' className='ink-grid mx-2 rounded-[2.5rem] text-paper sm:mx-4'>
+    <SectionHeading
+      dark
+      kicker='Projects'
+      title='things i made.'
+      note='keep scrolling, they stack ↓'
+      squiggle='#d8f650'
+    />
 
-export default SectionWrapper(Works, "projects");
+    <div>
+      {projects.map((project, index) => (
+        <ProjectCard key={project.name} project={project} index={index} />
+      ))}
+    </div>
+  </Section>
+);
+
+export default Works;

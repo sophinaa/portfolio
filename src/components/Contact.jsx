@@ -1,98 +1,82 @@
-import React from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
-import { styles } from "../styles";
-import BorderGlow from "./BorderGlow";
-import { EarthCanvas } from "./canvas";
-import { SectionWrapper } from "../hoc";
-import { slideIn } from "../utils/motion";
-const contactDetails = [
-  {
-    label: "Email",
-    value: "sophina0212@gmail.com",
-    link: "mailto:sophina0212@gmail.com",
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/sophinaa",
-    link: "https://www.linkedin.com/in/sophinaa",
-  },
-  {
-    label: "GitHub",
-    value: "github.com/sophinaa",
-    link: "https://github.com/sophinaa",
-  },
-];
+import { Flower, Sparkle } from "./Doodles";
+import { contact } from "../constants";
 
 const Contact = () => {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contact.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${contact.email}`;
+    }
+  };
+
   return (
-    <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-1 overflow-hidden`}
-    >
-      <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className='w-full xl:flex-[1] xl:max-w-[780px]'
-      >
-        <BorderGlow
-          className='rounded-2xl'
-          edgeSensitivity={34}
-          glowColor='171 206 207'
-          backgroundColor='#c4dce0'
-          borderRadius={24}
-          glowRadius={38}
-          glowIntensity={0.8}
-          coneSpread={25}
-          animated={false}
-          colors={["#c4dce0", "#daf4f5", "#abcecf"]}
+    <section id='contact' className='relative overflow-hidden px-4 pb-10 pt-24 sm:px-8 md:pt-32'>
+      <div className='relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border-2 border-ink bg-tomato px-6 py-16 text-center text-paper shadow-sticker-lg md:py-24'>
+        <Sparkle className='spin-slow absolute left-8 top-8 h-10 w-10 text-lime' />
+        <Flower className='spin-slow absolute bottom-8 right-10 h-14 w-14' fill='#a99bff' />
+
+        <p className='font-mono text-xs uppercase tracking-[0.25em] text-paper/80'>✦ Contact</p>
+        <motion.h2
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", bounce: 0.5 }}
+          className='mt-4 font-display text-[clamp(3.5rem,12vw,9rem)] leading-[0.9]'
         >
-          <div className='glass-panel-strong px-12 py-10 rounded-2xl'>
-            <p className={styles.sectionSubText}>Get in touch</p>
-            <h3 className={styles.sectionHeadText}>Contact.</h3>
+          say hi!
+        </motion.h2>
+        <p className='mt-4 font-hand text-3xl'>I&apos;m open to graduate roles and fun projects.</p>
 
-            <div className='mt-10 space-y-6'>
-              <div className='h-6' />
-              {contactDetails.map(({ label, value, link }) => (
-                <BorderGlow
-                  key={label}
-                  className='rounded-xl'
-                  edgeSensitivity={24}
-                  glowColor='171 206 207'
-                  backgroundColor='#abcecf'
-                  borderRadius={18}
-                  glowRadius={26}
-                  glowIntensity={0.85}
-                  coneSpread={20}
-                  animated={false}
-                  colors={["#abcecf", "#c4dce0", "#daf4f5"]}
-                >
-                  <div className='glass-panel flex w-full flex-col gap-2 sm:grid sm:grid-cols-[140px_max-content] sm:justify-between sm:items-center rounded-xl px-10 py-5'>
-                    <span className='text-white font-semibold tracking-wide'>
-                      {label}
-                    </span>
-                    <a
-                      href={link}
-                      target={link.startsWith("http") ? "_blank" : undefined}
-                      rel='noopener noreferrer'
-                      className='text-white hover:text-[#0d1b2a] sm:text-left sm:whitespace-nowrap transition-colors duration-200'
-                    >
-                      {value}
-                    </a>
-                  </div>
-                </BorderGlow>
-              ))}
-            </div>
+        <div className='mt-10 flex flex-col items-center gap-3'>
+          <button
+            type='button'
+            onClick={copyEmail}
+            className='group relative rounded-full border-2 border-ink bg-paper px-6 py-4 font-mono text-sm font-bold text-ink shadow-sticker transition-transform hover:-translate-y-1 hover:-rotate-1 sm:text-lg'
+          >
+            {contact.email}
+            <span className='ml-3 rounded-full bg-lime px-2 py-0.5 text-[10px] uppercase tracking-widest'>
+              {copied ? "copied ✓" : "copy"}
+            </span>
+          </button>
+          <span className='sr-only' aria-live='polite'>
+            {copied ? "Email address copied" : ""}
+          </span>
+
+          <div className='mt-3 flex flex-wrap justify-center gap-3'>
+            <a
+              href={contact.linkedin}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='rounded-full border-2 border-ink bg-lilac px-6 py-3 font-mono text-xs font-bold uppercase tracking-widest text-ink shadow-sticker transition-transform hover:-translate-y-1 hover:rotate-2'
+            >
+              LinkedIn ↗
+            </a>
+            <a
+              href={contact.github}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='rounded-full border-2 border-ink bg-lime px-6 py-3 font-mono text-xs font-bold uppercase tracking-widest text-ink shadow-sticker transition-transform hover:-translate-y-1 hover:-rotate-2'
+            >
+              GitHub ↗
+            </a>
           </div>
-        </BorderGlow>
-      </motion.div>
+        </div>
+      </div>
 
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-[1.05] xl:-ml-44 xl:h-auto md:h-[550px] h-[350px]'
-      >
-        <EarthCanvas />
-      </motion.div>
-    </div>
+      <footer className='mx-auto mt-10 flex max-w-6xl flex-col items-center justify-between gap-2 font-mono text-xs uppercase tracking-widest text-ink/60 sm:flex-row'>
+        <span>© {new Date().getFullYear()} Sophina</span>
+        <span>made with react, framer motion & far too many stickers</span>
+      </footer>
+    </section>
   );
 };
 
-export default SectionWrapper(Contact, "contact");
+export default Contact;

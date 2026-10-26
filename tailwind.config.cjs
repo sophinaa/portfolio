@@ -1,25 +1,29 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
-  mode: "jit",
   theme: {
     extend: {
       colors: {
-        primary: "#80a3a2",
-        secondary: "#abcecf",
-        tertiary: "#abcecf",
-        "black-100": "#c4dce0",
-        "black-200": "#abcecf",
-        "white-100": "#daf4f5",
+        paper: "#f4efe4",
+        ink: "#16130f",
+        tomato: "#ef4b32",
+        lilac: "#a99bff",
+        lime: "#d8f650",
+        mint: "#8fdcb2",
+        butter: "#ffd95a",
+      },
+      fontFamily: {
+        display: ['"Bagel Fat One"', "system-ui", "sans-serif"],
+        hand: ['"Caveat"', "cursive"],
+        mono: ['"Space Mono"', "ui-monospace", "monospace"],
+        sans: ['"DM Sans"', "system-ui", "sans-serif"],
       },
       boxShadow: {
-        card: "0px 35px 120px -15px #80a3a2",
+        sticker: "3px 3px 0 0 #16130f",
+        "sticker-lg": "6px 6px 0 0 #16130f",
       },
       screens: {
         xs: "450px",
-      },
-      backgroundImage: {
-        "hero-pattern": "url('/src/assets/herobg.png')",
       },
     },
   },
