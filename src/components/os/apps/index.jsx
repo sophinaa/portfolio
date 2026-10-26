@@ -47,8 +47,8 @@ export const apps = {
     label: "skills.zip",
     desktopIcon: <PixelIcon name='toolbox' className='h-11 w-12' />,
     icon: <PixelIcon name='toolbox' className='h-4 w-4' />,
-    width: 680,
-    height: 480,
+    width: 720,
+    height: 580,
     Component: SkillsApp,
   },
   contact: {

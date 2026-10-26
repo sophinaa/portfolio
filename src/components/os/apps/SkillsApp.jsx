@@ -1,10 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { skills } from "../../../constants";
 
+// On touch screens a finger on a tile should scroll the board, not drag the tile
+const isTouch = () => window.matchMedia("(pointer: coarse)").matches;
+
 const SkillsApp = () => {
   const boardRef = useRef(null);
+  const [draggable] = useState(() => !isTouch());
   const total = skills.reduce((count, { items }) => count + items.length, 0);
 
   return (
@@ -16,18 +20,18 @@ const SkillsApp = () => {
             {category}
           </span>
         ))}
-        <span className='ml-auto normal-case text-ink/60'>drag them around ✦</span>
+        <span className='ml-auto normal-case text-ink/60'>{draggable ? "drag them around ✦" : "scroll for more ✦"}</span>
       </div>
 
       <div
         ref={boardRef}
-        className='relative flex min-h-0 flex-1 flex-wrap content-center items-center justify-center gap-x-4 gap-y-5 overflow-hidden p-6'
+        className='relative flex min-h-0 flex-1 flex-wrap content-start items-center justify-center gap-x-4 gap-y-5 overflow-y-auto p-6'
       >
         {skills.flatMap(({ category, color, items }) =>
           items.map((item) => (
             <motion.span
               key={`${category}-${item}`}
-              drag
+              drag={draggable}
               dragConstraints={boardRef}
               dragElastic={0.15}
               dragMomentum={false}
@@ -36,7 +40,7 @@ const SkillsApp = () => {
               transition={{ type: "spring", bounce: 0.5 }}
               whileHover={{ y: -3 }}
               whileDrag={{ scale: 1.15, zIndex: 20 }}
-              className={`cursor-grab touch-none select-none border-2 border-ink px-3 py-1.5 font-display text-base font-semibold shadow-sticker active:cursor-grabbing sm:text-lg ${color}`}
+              className={`${draggable ? "cursor-grab touch-none active:cursor-grabbing" : ""} select-none border-2 border-ink px-3 py-1.5 font-display text-base font-semibold shadow-sticker sm:text-lg ${color}`}
             >
               {item}
             </motion.span>
