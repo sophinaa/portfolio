@@ -28,8 +28,8 @@ export const highlights = [
     color: "bg-lilac",
   },
   {
-    big: "1st place",
-    detail: "Dundee University Hackathon 2025. Now co-organising the 2026 event.",
+    big: "2x hackathon winner",
+    detail: "Won the DUCS and GUTS (BlackRock) hackathons. Also co-organised the 2026 DUCS hackathon.",
     color: "bg-mint",
   },
 ];

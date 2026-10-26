@@ -73,19 +73,123 @@ const CurlyArrow = ({ className }) => (
   </svg>
 );
 
-// Books, a laptop, earbuds and pencils on the locker floor
+// Pixel-art props for the locker floor. One character per pixel, coloured by `shelfPalette`.
+const shelfPalette = {
+  K: "#141414",
+  N: "#2c3d78",
+  R: "#e0566f",
+  Y: "#f2c94c",
+  M: "#5fd4c4",
+  C: "#f3ecd8",
+  c: "#cfc6ad",
+  G: "#c3c0b6",
+  g: "#8a877e",
+  D: "#0f1a14",
+  L: "#7dff7a",
+  W: "#f7f5ef",
+  w: "#d9d6cd",
+  P: "#4f9a3a",
+  p: "#2f6b26",
+  T: "#b5643c",
+  t: "#8c4a2b",
+  S: "#e8e4dc",
+};
+
+const sprites = {
+  books: [
+    "...KKKKKKKKKKKKKKKK...",
+    "...KRRRRRRRRRRRRRCK...",
+    "...KKKKKKKKKKKKKKKK...",
+    "KKKKKKKKKKKKKKKKKKKK..",
+    "KNNNNYYNNNNNNNNNNNCK..",
+    "KNNNNYYNNNNNNNNNNNCK..",
+    "KKKKKKKKKKKKKKKKKKKK..",
+    ".KKKKKKKKKKKKKKKKKKKKK",
+    ".KMMMMMMMMMMMMMMMMMMcK",
+    ".KMMKKMMMMMMMMMMMMMMcK",
+    ".KKKKKKKKKKKKKKKKKKKKK",
+  ],
+  laptop: [
+    "..KKKKKKKKKKKKKK..",
+    "..KDDDDDDDDDDDDK..",
+    "..KDLLLDDDDDDDDK..",
+    "..KDDDLLLLLDDDDK..",
+    "..KDDDLLLDDDDDDK..",
+    "..KDLLDDDDDDDDDK..",
+    "..KDDDLLLLDDDDDK..",
+    "..KDDDDDDDDDDDDK..",
+    "..KKKKKKKKKKKKKK..",
+    ".KGGGGGGGGGGGGGGK.",
+    "KGgGgGgGgGgGgGgGGK",
+    "KKKKKKKKKKKKKKKKKK",
+  ],
+  mug: [
+    "KKKKKKK...",
+    "KRRRRRKKK.",
+    "KRSRRRK.K.",
+    "KRSRRRK.K.",
+    "KRRRRRKKK.",
+    "KRRRRRK...",
+    ".KKKKK....",
+  ],
+  earbuds: [
+    ".KKKKK.",
+    "KWWWWWK",
+    "KwwwwwK",
+    "KWWWWWK",
+    ".KKKKK.",
+  ],
+  plant: [
+    "..P.p...",
+    ".PPpPp..",
+    "pPP.PPp.",
+    ".pPPPp..",
+    "..KKKK..",
+    ".KTTTTK.",
+    ".KtTTtK.",
+    "..KKKK..",
+  ],
+  pencils: [
+    "KYYYYYYYYYYYYcK..",
+    "..KMMMMMMMMMMMMcK",
+  ],
+};
+
+const Sprite = ({ name, className = "", style }) => {
+  const rows = sprites[name];
+  const width = rows[0].length;
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${rows.length}`}
+      shapeRendering='crispEdges'
+      aria-hidden='true'
+      // the locker interior is ~80 sprite pixels wide, so each sprite keeps the same pixel size
+      style={{ width: `${(width / 80) * 100}%`, ...style }}
+      className={`absolute block h-auto ${className}`}
+    >
+      {rows.flatMap((row, y) =>
+        [...row].map((cell, x) =>
+          shelfPalette[cell] ? <rect key={`${x}-${y}`} x={x} y={y} width='1' height='1' fill={shelfPalette[cell]} /> : null
+        )
+      )}
+    </svg>
+  );
+};
+
 const Shelf = () => (
   <div className='absolute inset-x-0 bottom-0 h-[17%] border-t-2 border-[#26282b] bg-gradient-to-b from-[#4a4c50] to-[#2f3134]'>
-    <div className='absolute bottom-[38%] left-[7%] w-[30%]'>
-      <span className='block h-3 w-[92%] rounded-sm border border-ink bg-[#e8dcb8] sm:h-4' />
-      <span className='block h-3.5 w-full rounded-sm border border-ink bg-[#2c3d78] sm:h-5' />
-      <span className='block h-3 w-[96%] rounded-sm border border-ink bg-[#e8dcb8] sm:h-4' />
-    </div>
-    <span className='absolute bottom-[34%] right-[10%] h-2.5 w-[40%] -skew-x-[20deg] rounded-sm border border-ink bg-gradient-to-r from-[#1b1c1f] to-[#3a3b40] sm:h-3' />
-    <span className='absolute bottom-[54%] right-[18%] h-3 w-5 rounded-[6px] border border-ink bg-[#f2f0ea] sm:h-4 sm:w-7' />
-    <span className='absolute bottom-[16%] left-[40%] h-1 w-[22%] rotate-[8deg] rounded-full bg-tomato' />
-    <span className='absolute bottom-[10%] left-[46%] h-1 w-[20%] -rotate-[6deg] rounded-full bg-[#3b6cf0]' />
-    <span className='absolute bottom-[22%] left-[52%] h-1 w-[16%] rotate-[2deg] rounded-full bg-[#5fd47a]' />
+    <Sprite name='books' className='bottom-[30%] left-[5%]' />
+    <Sprite name='laptop' className='bottom-[30%] left-[36%]' />
+    {/* blinking cursor on the laptop screen */}
+    <span className='blink absolute bottom-[56%] left-[50%] h-[5%] w-[1.6%] bg-lime' aria-hidden='true' />
+    <Sprite name='earbuds' className='bottom-[30%] left-[61%]' />
+    <Sprite name='mug' className='bottom-[30%] left-[72%]' />
+    <span className='steam absolute bottom-[62%] left-[74%] font-term text-sm leading-none text-white/70' aria-hidden='true'>
+      ~
+    </span>
+    <Sprite name='plant' className='bottom-[30%] right-[3%]' />
+    <Sprite name='pencils' className='bottom-[8%] left-[22%] rotate-[-4deg]' />
   </div>
 );
 

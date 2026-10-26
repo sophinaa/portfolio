@@ -43,7 +43,7 @@ const TerminalApp = ({ open, close }) => {
       case "help":
         return help;
       case "whoami":
-        return ["sophina: final-year CS student @ Dundee, ex-Barclays intern, hackathon winner '25."];
+        return ["sophina: final-year CS student @ Dundee, ex-Barclays intern, 2x hackathon winner (DUCS + GUTS/BlackRock)."];
       case "projects":
         return projects.map((project) => `  ${project.name.padEnd(36)} ${project.tags.join(", ")}`);
       case "experience":
@@ -102,7 +102,7 @@ const TerminalApp = ({ open, close }) => {
 
   return (
     <div
-      className='crt h-full min-h-full cursor-text p-3 font-term text-xl leading-tight text-lime'
+      className='crt h-full overflow-y-auto cursor-text p-3 font-term text-xl leading-tight text-lime'
       onClick={() => inputRef.current?.focus()}
     >
       {lines.map((line, index) => (
