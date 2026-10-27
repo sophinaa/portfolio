@@ -4,7 +4,7 @@ import { contact, experiences, projects, skills } from "../../../constants";
 
 const PROMPT = "C:\\SOPHINA>";
 
-const openable = ["about", "projects", "experience", "skills", "contact", "locker", "bin"];
+const openable = ["about", "projects", "experience", "skills", "contact", "locker", "maps", "bin"];
 
 const help = [
   "Available commands:",

@@ -6,6 +6,7 @@ import ContactApp from "./ContactApp";
 import TerminalApp from "./TerminalApp";
 import RecycleBinApp from "./RecycleBinApp";
 import LockerApp from "./LockerApp";
+import MapsApp from "./MapsApp";
 import { PixelIcon } from "../icons";
 import { sophinaPixel } from "../../../assets";
 
@@ -69,6 +70,15 @@ export const apps = {
     height: 720,
     Component: LockerApp,
   },
+  maps: {
+    title: "Maps",
+    label: "Maps",
+    desktopIcon: <PixelIcon name='map' className='h-11 w-12' />,
+    icon: <PixelIcon name='map' className='h-4 w-4' />,
+    width: 820,
+    height: 560,
+    Component: MapsApp,
+  },
   terminal: {
     title: "Terminal",
     label: "Terminal",
@@ -89,4 +99,4 @@ export const apps = {
   },
 };
 
-export const desktopOrder = ["about", "projects", "experience", "skills", "contact", "locker", "terminal", "bin"];
+export const desktopOrder = ["about", "projects", "experience", "skills", "contact", "locker", "maps", "terminal", "bin"];
