@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { animate, motion, useAnimationFrame, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
 
 import map from "./mapData.json";
+import borders from "./mapBorders.json";
 
 // Map data: Natural Earth (public domain), rasterised to a Mercator pixel grid of the world.
 // Each row is run-length encoded: "12." = 12 sea cells, "~" = lakes/rivers, letters = countries.
@@ -19,10 +20,12 @@ const decode = (rows) =>
 const WATER = "#a3ccff";
 const LAND = "#f2efe9";
 const DESERT = "#efe3c4";
-const BORDER = "#a69e92";
+const BORDER = "#9e968a";
 const COAST = "#ddd4c3";
 
-// Each map cell is drawn as SCALE×SCALE canvas pixels, so borders can be thin lines on the cell edges
+// Each map cell is drawn as SCALE×SCALE canvas pixels, so coastlines can be thin lines on the cell edges.
+// Country borders are real lines (Natural Earth boundary lines, simplified) drawn on top as SVG,
+// so they stay clean at every zoom instead of following the pixel grid.
 const SCALE = 4;
 
 const drawMap = (canvas) => {
@@ -46,7 +49,6 @@ const drawMap = (canvas) => {
       if (!isLand(x, y)) {
         continue;
       }
-      const cell = grid[y][x];
       const px = x * SCALE;
       const py = y * SCALE;
 
@@ -56,15 +58,6 @@ const drawMap = (canvas) => {
       if (!isLand(x - 1, y)) ctx.fillRect(px, py, 1, SCALE);
       if (!isLand(x, y + 1)) ctx.fillRect(px, py + SCALE - 1, SCALE, 1);
       if (!isLand(x, y - 1)) ctx.fillRect(px, py, SCALE, 1);
-
-      // dashed country borders along cell edges, like Google's
-      ctx.fillStyle = BORDER;
-      if (isLand(x + 1, y) && grid[y][x + 1] !== cell && y % 2 === 0) {
-        ctx.fillRect(px + SCALE - 1, py, 1, SCALE);
-      }
-      if (isLand(x, y + 1) && grid[y + 1][x] !== cell && x % 2 === 0) {
-        ctx.fillRect(px, py + SCALE - 1, SCALE, 1);
-      }
     }
   }
 };
@@ -118,7 +111,6 @@ const PixelMap = ({ places, selected, onSelect }) => {
   const y = useMotionValue(0);
 
   useEffect(() => drawMap(canvasRef.current), []);
-  useEffect(() => zoom.on("change", setZoomLevel), [zoom]);
 
   useLayoutEffect(() => {
     const observer = new ResizeObserver(([entry]) => {
@@ -131,11 +123,28 @@ const PixelMap = ({ places, selected, onSelect }) => {
   // At zoom 1 the whole world fits the frame
   const aspect = map.width / map.height;
   const baseWidth = Math.min(frame.width, frame.height * aspect) || 1;
-  // the frame size can change (resizing, maximising), so it's a motion value too
-  const base = useMotionValue(baseWidth);
-  useLayoutEffect(() => base.set(baseWidth), [base, baseWidth]);
-  const width = useTransform([zoom, base], ([level, size]) => size * level);
-  const height = useTransform([zoom, base], ([level, size]) => (size * level) / aspect);
+  // The map's on-screen size follows both the zoom and the frame size (which changes when
+  // the window is resized or maximised), so it's kept in sync by hand
+  const width = useMotionValue(baseWidth);
+  const height = useMotionValue(baseWidth / aspect);
+  const baseRef = useRef(baseWidth);
+  const syncSize = useCallback(() => {
+    width.set(baseRef.current * zoom.get());
+    height.set((baseRef.current * zoom.get()) / aspect);
+  }, [aspect, height, width, zoom]);
+  useLayoutEffect(() => {
+    baseRef.current = baseWidth;
+    syncSize();
+  }, [baseWidth, syncSize]);
+
+  useEffect(
+    () =>
+      zoom.on("change", (level) => {
+        setZoomLevel(level);
+        syncSize();
+      }),
+    [syncSize, zoom]
+  );
 
   // Pan limits for a given zoom; a map smaller than the frame stays centred
   const limits = useCallback(
@@ -253,6 +262,23 @@ const PixelMap = ({ places, selected, onSelect }) => {
           className='absolute inset-0 h-full w-full'
           aria-hidden='true'
         />
+
+        <svg
+          viewBox={borders.viewBox}
+          preserveAspectRatio='none'
+          className='pointer-events-none absolute inset-0 h-full w-full'
+          aria-hidden='true'
+        >
+          <path
+            d={borders.d}
+            fill='none'
+            stroke={BORDER}
+            strokeWidth='1'
+            strokeDasharray='4 3'
+            strokeLinejoin='round'
+            vectorEffect='non-scaling-stroke'
+          />
+        </svg>
 
         {/* bigger countries are labelled first; smaller ones fade in as you zoom */}
         {map.countries.map(({ name, size, x: left, y: top }) => (
