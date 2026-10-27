@@ -3,8 +3,9 @@ import { animate, motion, useAnimationFrame, useMotionValue, useReducedMotion, u
 
 import map from "./mapData.json";
 
-// Map data: Natural Earth (public domain), rasterised to a Mercator pixel grid.
-// Each row is run-length encoded: "12." = 12 sea cells, "A" = one cell of country A, "~" = lakes/rivers.
+// Map data: Natural Earth (public domain), rasterised to a Mercator pixel grid of the world.
+// Each row is run-length encoded: "12." = 12 sea cells, "~" = lakes/rivers, letters = countries.
+// Countries are map-coloured (neighbours never share a letter); lowercase letters are desert countries.
 const decode = (rows) =>
   rows.map((row) => {
     const cells = [];
@@ -21,8 +22,6 @@ const DESERT = "#efe3c4";
 const BORDER = "#b4aca0";
 const COAST = "#e4ddd0";
 
-// Rows below this fraction of the map are roughly the Sahara, which Google tints sandy
-const DESERT_FROM = 0.78;
 
 const drawMap = (canvas) => {
   const grid = decode(map.rows);
@@ -34,7 +33,7 @@ const drawMap = (canvas) => {
       const cell = grid[y][x];
       let colour = WATER;
       if (isLand(x, y)) {
-        colour = y / map.height > DESERT_FROM ? DESERT : LAND;
+        colour = cell === cell.toLowerCase() ? DESERT : LAND;
         const right = grid[y][x + 1];
         const below = grid[y + 1]?.[x];
         const border = (isLand(x + 1, y) && right !== cell) || (isLand(x, y + 1) && below !== cell);
@@ -79,9 +78,9 @@ const Pin = ({ selected }) => (
   </svg>
 );
 
-const ZOOMS = [1, 1.6, 2.6];
+const ZOOMS = [1, 2, 4, 7];
 
-const LON_SPAN = 50; // degrees of longitude the map covers
+const LON_SPAN = 360; // degrees of longitude the map covers
 const KM_PER_DEGREE = 111.32;
 
 const PixelMap = ({ places, selected, onSelect }) => {
@@ -103,26 +102,25 @@ const PixelMap = ({ places, selected, onSelect }) => {
     return () => observer.disconnect();
   }, []);
 
-  // Size the map so it covers the frame at zoom 1, then scale up
+  // At zoom 1 the whole world fits in the frame, then each step scales it up
   const aspect = map.width / map.height;
-  const baseWidth = Math.max(frame.width, frame.height * aspect);
-  const mapWidth = baseWidth * ZOOMS[zoomIndex];
+  const baseWidth = Math.min(frame.width, frame.height * aspect);
+  const zoomLevel = ZOOMS[zoomIndex];
+  const mapWidth = baseWidth * zoomLevel;
   const mapHeight = mapWidth / aspect;
-  const bounds = {
-    left: Math.min(0, frame.width - mapWidth),
-    right: 0,
-    top: Math.min(0, frame.height - mapHeight),
-    bottom: 0,
-  };
+  // Drag limits; when the map is smaller than the frame it stays centred
+  const range = (frameSize, mapSize) =>
+    mapSize > frameSize ? [frameSize - mapSize, 0] : [(frameSize - mapSize) / 2, (frameSize - mapSize) / 2];
+  const [minX, maxX] = range(frame.width, mapWidth);
+  const [minY, maxY] = range(frame.height, mapHeight);
+  const bounds = { left: minX, right: maxX, top: minY, bottom: maxY };
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
   // Pan so a point (in % of the map) sits in the middle of the frame
-  const centreOn = (point, width = mapWidth, height = mapHeight) => {
-    const left = Math.min(0, frame.width - width);
-    const top = Math.min(0, frame.height - height);
+  const centreOn = (point) => {
     const options = reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 };
-    animate(x, clamp(frame.width / 2 - (point.x / 100) * width, left, 0), options);
-    animate(y, clamp(frame.height / 2 - (point.y / 100) * height, top, 0), options);
+    animate(x, clamp(frame.width / 2 - (point.x / 100) * mapWidth, minX, maxX), options);
+    animate(y, clamp(frame.height / 2 - (point.y / 100) * mapHeight, minY, maxY), options);
   };
 
   // Keep the selected place in view whenever the frame, zoom or selection changes
@@ -146,7 +144,12 @@ const PixelMap = ({ places, selected, onSelect }) => {
   const routePath = `M${from.x} ${from.y} Q ${control.x} ${control.y} ${to.x} ${to.y}`;
 
   return (
-    <div ref={frameRef} className='relative h-full min-h-[280px] w-full touch-none overflow-hidden bg-[#a3ccff]'>
+    <div
+      ref={frameRef}
+      // focusing a pin near the edge would otherwise scroll this frame and shift the controls
+      onScroll={(event) => event.currentTarget.scrollTo(0, 0)}
+      className='relative h-full min-h-[280px] w-full touch-none overflow-hidden bg-[#a3ccff]'
+    >
       <motion.div
         drag
         dragConstraints={bounds}
@@ -163,7 +166,10 @@ const PixelMap = ({ places, selected, onSelect }) => {
           aria-hidden='true'
         />
 
-        {map.countries.map(({ name, x: left, y: top }) => (
+        {/* bigger countries are labelled first; smaller ones appear as you zoom in */}
+        {map.countries
+          .filter(({ size }) => size * (mapWidth / map.width) ** 2 > 2100)
+          .map(({ name, x: left, y: top }) => (
           <span
             key={name}
             className='pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-label text-[9px] tracking-[0.2em] text-[#8c867b]'
@@ -173,7 +179,7 @@ const PixelMap = ({ places, selected, onSelect }) => {
           </span>
         ))}
 
-        {zoomIndex > 0
+        {mapWidth / map.width >= 3
           ? map.cities.map(({ name, x: left, y: top }) => (
               <span
                 key={name}
@@ -209,7 +215,11 @@ const PixelMap = ({ places, selected, onSelect }) => {
               type='button'
               aria-pressed={selected === id}
               onPointerDown={(event) => event.stopPropagation()}
-              onClick={() => onSelect(id)}
+              onClick={() => {
+                onSelect(id);
+                // like Google: clicking a pin zooms in on it
+                setZoomIndex((index) => Math.max(index, 2));
+              }}
               className='absolute flex -translate-x-1/2 -translate-y-full flex-col items-center'
               style={{ left: `${point.x}%`, top: `${point.y}%` }}
             >
